@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function Post({post, index}) {
+export default function Post({post}) {
     return (
-        <div>
-            <h3>{index + 1}. {post.title}</h3>
-        </div>
+        <li>
+            <h5>
+                {post}
+            </h5>
+        </li>
     )
 }

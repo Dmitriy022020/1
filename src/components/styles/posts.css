@@ -1,0 +1,8 @@
+.all-post {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row nowrap;
+}
+.post {
+    list-style: none;
+}

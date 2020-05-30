@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './home/Home';
 import FilmList from './film/FilmList';
 import Details from './book/Details';
-import Posts from './posts/Posts';
 import BookList from './book/BookList';
+import AllPosts from "./posts/AllPosts";
 
 const Main = () => (
     <Switch>
@@ -12,7 +12,7 @@ const Main = () => (
         <Route path='/films' component={Films} />
         <Route path='/books' component={Books} />
         <Route path='/books/details' component={Details} />
-        <Route path='/about' component={Posts} />
+        <Route path='/about' component={AllPosts} />
     </Switch>
 );
 

@@ -1,30 +1,19 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {createPost} from '../../redux/actions'
+import React from 'react';
 
-function PostForm({addPost}) {
-    const [value, setValue] = useState([])
-
-    function submitHandler(event) {
+function PostForm() {
+    const submitHandler = (event) => {
         event.preventDefault()
-        createPost(value)
-        setValue('')
     }
+
     return (
         <form onSubmit={submitHandler}>
+            <h3>Напиши пост</h3>
             <div>
-                <label htmlFor="title">Заголовок</label>
                 <input
-                    id="title"
-                    type="text"
-                    value={value}
-                    onChange={event => setValue(event.target.value)} />
+                    type="text"/>
             </div>
             <button className="button" type="submit">Создать</button>
         </form>
     )
 }
-const mapDispatchToProps = {
-    createPost
-}
-export default connect(null, mapDispatchToProps)(PostForm)
+export default PostForm

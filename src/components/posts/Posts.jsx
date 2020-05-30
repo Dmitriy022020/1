@@ -1,40 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
-import Post from './Post'
-import PostForm from './PostForm';
+import React from 'react';
+import Post from "./Post";
 
-function Posts() {
-    const [newPosts, setPosts] = useState([])
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
-            .then(responce => responce.json())
-            .then(p => setPosts(p))
-    }, [])
-    function addPost(title) {
-        setPosts(
-            newPosts.concat([{
-                title: title,
-                id: Date.now().toString(),
-            }]))
-    }
-
-    const postElem = newPosts.map((post, index) =>
-        <li key={post.id}>
-            <Post post={post} index={index} />
-        </li>)
+function Posts({posts}) {
+    const elem = posts.map(post => <Post post={post} key={post}/>)
     return (
         <div>
-            <h2>Посты</h2>
-            <PostForm addPost={addPost} />
-            <ul>
-                {postElem}
+            <h3>Посты</h3>
+            <ul className="post">
+                {(!posts.length) ? <h5>Постов нет</h5> : elem}
             </ul>
         </div>
     )
 }
-const mapStateToProps = state => {
-    return {
-        newPosts: state.posts.posts
-    }
-}
-export default connect(mapStateToProps, null)(Posts)
+export default Posts
