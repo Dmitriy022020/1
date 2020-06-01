@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function Post({post}) {
     return (
-        <li>
-            <h5>
+        <li className='li-post'>
+            <h4>
                 {post.title}
-            </h5>
+            </h4>
         </li>
     )
 }

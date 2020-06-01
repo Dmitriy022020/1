@@ -5,9 +5,9 @@ import {connect} from "react-redux";
 const Posts = ({newPosts}) => {
     const elem = newPosts.map(post => <Post post={post} key={post.id}/>)
     return (
-        <div>
+        <div className='colomn'>
             <h3>Посты</h3>
-            <ul className="post">
+            <ul className="ul-post">
                 {(!newPosts.length) ? <h5>Постов нет</h5> : elem}
             </ul>
         </div>

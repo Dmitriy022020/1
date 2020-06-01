@@ -5,7 +5,6 @@ import FetchPosts from "./FetchPosts";
 import '../styles/posts.css'
 
 export default function AllPosts() {
-    const posts = []
     return (
     <div className="container">
         <h2>Посты</h2>
@@ -15,7 +14,7 @@ export default function AllPosts() {
                 <Posts/>
             </div>
             <div>
-                <FetchPosts posts={posts}/>
+                <FetchPosts/>
             </div>
         </div>
     </div>

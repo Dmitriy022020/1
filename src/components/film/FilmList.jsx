@@ -9,9 +9,10 @@ function FilmList() {
     const [load, setLoad] = useState(true)
     
     useEffect(() => {
-        let page = 66
+        const page = 66
         const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538&language=ru'
-        fetch('https://api.themoviedb.org/3/discover/movie?page=' + page + '&release_date=2019'+ api_key)
+        fetch('https://api.themoviedb.org/3/discover/movie?page=' + page +
+            '&release_date=2019'+ api_key)
             .then(response => response.json())
             .then(f => {
                 setTimeout(() => {
@@ -41,3 +42,4 @@ function FilmList() {
 
 };
 export default FilmList
+
