@@ -12,7 +12,7 @@ export default function AllPosts() {
         <PostForm/>
         <div className="all-post">
             <div>
-                <Posts posts={posts}/>
+                <Posts/>
             </div>
             <div>
                 <FetchPosts posts={posts}/>

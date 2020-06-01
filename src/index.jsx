@@ -5,9 +5,9 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import {compose, createStore} from 'redux';
 import { Provider } from 'react-redux'
-import { reducer } from './redux/reducer';
+import { reducers } from './redux/reducers';
 
-const store = createStore(reducer, compose(
+const store = createStore(reducers, compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 ))
 

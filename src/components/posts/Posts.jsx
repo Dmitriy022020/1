@@ -1,15 +1,22 @@
 import React from 'react';
 import Post from "./Post";
+import {connect} from "react-redux";
 
-function Posts({posts}) {
-    const elem = posts.map(post => <Post post={post} key={post}/>)
+const Posts = ({newPosts}) => {
+    const elem = newPosts.map(post => <Post post={post} key={post.id}/>)
     return (
         <div>
             <h3>Посты</h3>
             <ul className="post">
-                {(!posts.length) ? <h5>Постов нет</h5> : elem}
+                {(!newPosts.length) ? <h5>Постов нет</h5> : elem}
             </ul>
         </div>
     )
 }
-export default Posts
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        newPosts: state.posts.posts
+    }
+}
+export default connect(mapStateToProps, null)(Posts)
