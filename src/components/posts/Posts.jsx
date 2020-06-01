@@ -16,7 +16,7 @@ const Posts = ({newPosts}) => {
 const mapStateToProps = state => {
     console.log(state)
     return {
-        newPosts: state.posts.posts
+        newPosts: state.allPosts.posts
     }
 }
 export default connect(mapStateToProps, null)(Posts)

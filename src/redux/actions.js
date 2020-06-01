@@ -1,4 +1,4 @@
-import {CREATE_POST, FETCH_POST} from "./types";
+import {CREATE_POST, FETCH_POST, HIDE_ALERT, HIDE_LOADER, SHOW_ALERT, SHOW_LOADER} from "./types";
 
 export function createPost(post) {
     return {
@@ -6,8 +6,37 @@ export function createPost(post) {
         payload: post
     }
 }
+export function showLoader() {
+    return {
+        type: SHOW_LOADER
+    }
+}
+export function hideLoader() {
+    return {
+        type: HIDE_LOADER
+    }
+}
+export function showAlert(text) {
+    return dispatch => {
+        dispatch({
+            type: SHOW_ALERT,
+            payload: text
+        })
+
+        setTimeout(() => {
+            dispatch(hideAlert())
+        }, 2000)
+    }
+}
+export function hideAlert() {
+    return {
+        type: HIDE_ALERT
+    }
+}
+
 export function fetchPost() {
     return async dispatch => {
+        dispatch(showLoader())
         const page = 50
         const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538&language=ru'
         const response = await fetch(
@@ -21,5 +50,6 @@ export function fetchPost() {
             type: FETCH_POST,
             payload: json.results
         })
+        dispatch(hideLoader())
     }
 }

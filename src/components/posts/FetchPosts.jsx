@@ -2,14 +2,17 @@ import React from "react";
 import Post from "./Post";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPost} from "../../redux/actions";
+import Loader from "../../Loader";
 
 function FetchPosts() {
     const dispatch = useDispatch()
-    const posts = useSelector(state => state.posts.fetchPosts)
+    const posts = useSelector(state => state.allPosts.fetchPosts)
+    const loading = useSelector(state => state.app.loading)
+    if (loading)
+        return <Loader/>
     const elem = posts.map(post => <Post post={post} key={post.id}/>)
     const button = (
         <div>
-            <h5>Постов нет</h5>
             <button
                 className="button"
                 onClick={() => dispatch(fetchPost())}
