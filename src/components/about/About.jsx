@@ -5,20 +5,10 @@ import './about.css'
 import {connect} from "react-redux";
 
 function About({posts}) {
-  let setTodos
-  function onChange(id) {
-    setTodos(posts.map(post => {
-      if (post.id === id) {
-        post.completed = !post.completed
-      }
-      return post
-    }))
-  };
   const postList = (posts.map((post, i) =>
     <Comment
       post={post}
       key={post.id} i={i}
-      onChange={onChange}
     />
   ));
   return (
@@ -30,7 +20,7 @@ function About({posts}) {
       </ul>
     </div>
   )
-};
+}
 const mapStateToProps = state => {
   console.log(state)
   return {

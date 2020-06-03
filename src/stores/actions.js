@@ -1,4 +1,5 @@
 import {
+  CHANGE_POST,
   CREATE_POST,
   FETCH_FILM,
   HIDE_ALERT,
@@ -11,17 +12,24 @@ import {
 export function createPost(post) {
   return {
     type: CREATE_POST,
-    payload: post
+    payload: post,
   }
 }
 
 export function removePost(id) {
   return {
     type: REMOVE_POST,
-    payload: id
+    payload: id,
   }
 }
 
+export function changePost(id) {
+  return {
+    type: CHANGE_POST,
+    payload: id,
+  }
+
+}
 export function showLoader() {
   return {
     type: SHOW_LOADER

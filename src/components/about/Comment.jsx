@@ -1,23 +1,21 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {removePost} from "../../stores/actions";
+import {changePost, removePost} from "../../stores/actions";
 
-function Comment({post, i, onChange}) {
+function Comment({post, i}) {
   const dispatch = useDispatch()
-  const classes = []
-  const back = ['li_todo']
+  const classes = ['li_todo']
   if (post.completed) {
-    classes.push('checkbox')
-    back.push('background')
+    classes.push('background')
   }
   return (
-    <li className={back.join(' ')}>
-      <span className={classes.join(' ')}>
+    <li className={classes.join(' ')}>
+      <span>
         <input
           className="input_todo"
           type="checkbox"
           checked={post.completed}
-          onChange={() => onChange(post.id)}/>
+          onChange={() => dispatch(changePost(post.id))}/>
         <strong>{i + 1} </strong>
         {post.title}
       </span>
@@ -30,5 +28,5 @@ function Comment({post, i, onChange}) {
       </span>
     </li>
   )
-};
+}
 export default Comment
