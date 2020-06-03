@@ -4,7 +4,7 @@ import Home from './home/Home';
 import FilmList from './film/FilmList';
 import Details from './book/Details';
 import BookList from './book/BookList';
-import AllPosts from "./about/AllPosts";
+import About from "./about/About";
 
 const Main = () => (
     <Switch>
@@ -12,7 +12,7 @@ const Main = () => (
         <Route path='/films' component={Films} />
         <Route path='/books' component={Books} />
         <Route path='/books/details' component={Details} />
-        <Route path='/about' component={AllPosts} />
+        <Route path='/about' component={About} />
     </Switch>
 );
 

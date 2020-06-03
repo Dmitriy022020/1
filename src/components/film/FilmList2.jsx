@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Film from './Film';
-import Loader from '../Loader'
-import '../../styles/films.css'
+import Loader from '../loader/Loader'
+import './films.css'
 
 
 function FilmList() {

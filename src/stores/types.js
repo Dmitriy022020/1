@@ -1,5 +1,7 @@
 export const CREATE_POST = 'POST/CREATE_POST'
-export const FETCH_POST = 'POST/FETCH_POST'
+export const REMOVE_POST = 'POST/REMOVE_POST'
+export const CHANGE_POST = 'POST/CHANGE_POST';
+export const FETCH_FILM = 'FILM/FETCH_FILM'
 export const SHOW_LOADER = 'APP/SHOW_LOADER'
 export const HIDE_LOADER = 'APP/HIDE_LOADER'
 export const SHOW_ALERT = 'APP/SHOW_ALERT'

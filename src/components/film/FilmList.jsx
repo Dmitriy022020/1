@@ -1,13 +1,13 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilm} from "../../redux/actions";
-import Loader from "../Loader";
+import {fetchFilms} from "../../stores/actions";
+import Loader from "../loader/Loader";
 import Film from "./Film";
-import '../../styles/films.css'
+import './films.css'
 
 function FilmList() {
   const dispatch = useDispatch()
-  const films = useSelector(state => state.allPosts.fetchPosts)
+  const films = useSelector(state => state.allFilms.fetchFilms)
   const loading = useSelector(state => state.app.loading)
   if (loading)
     return <Loader/>
@@ -22,7 +22,7 @@ function FilmList() {
     <div>
       <button
         className="button"
-        onClick={() => dispatch(fetchFilm())}
+        onClick={() => dispatch(fetchFilms())}
       >Загрузить</button>
     </div>
   )

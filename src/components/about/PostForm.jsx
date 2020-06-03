@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPost, showAlert} from "../../redux/actions";
+import {createPost, showAlert} from "../../stores/actions";
 import {Alert} from "./Alert";
 
 class PostForm extends Component {
