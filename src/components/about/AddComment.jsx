@@ -14,16 +14,21 @@ class AddComment extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     const {title} = this.state;
-    if (title.trim()) {
-      const newPost = {
-        title,
-        id: Date.now().toString(),
-        completed: false,
+    if (this.props.user) {
+      if (title.trim()) {
+        const newPost = {
+          title,
+          id: Date.now().toString(),
+          completed: false,
+        }
+        this.props.createPost(newPost)
+        this.setState({title: ''})
+        console.log(newPost)
+      } else {
+        return this.props.showAlert('Введи текст');
       }
-      this.props.createPost(newPost)
-      this.setState({title: ''})
     } else {
-      return this.props.showAlert('Введи текст');
+      return this.props.showAlert('Необходимо авторизоваться')
     }
   };
   changeHandler = event => this.setState({title: event.target.value});
@@ -42,9 +47,11 @@ class AddComment extends Component {
 }
 
 const mapStateToProps = state => ({
-  alert: state.app.alert
+  alert: state.app.alert,
+  user: state.users.user,
 });
 const mapDispatchToProps = {
-  createPost, showAlert
+  createPost,
+  showAlert,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddComment)

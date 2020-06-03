@@ -4,7 +4,7 @@ import AddComment from './AddComment';
 import './about.css'
 import {useSelector} from "react-redux";
 
-function About() {
+function CommentsList() {
   const posts = useSelector(state => state.allPosts.posts)
   const postList = (posts.map((post, i) =>
     <Comment
@@ -22,4 +22,4 @@ function About() {
     </div>
   )
 }
-export default About
+export default CommentsList

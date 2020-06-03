@@ -7,8 +7,9 @@
     align-items: center;
     padding: 5px;
     margin: 5px;
-    border: 1px solid grey;
+    border: 1px solid darkorchid;
     border-radius: 5px;
+    font-size: 1.2em;
 }
 .input_todo {
     margin-right: 1em;
@@ -23,4 +24,7 @@
 }  
 .button_todo {
     margin-left: 1em;
+}
+.alert {
+    color: red;
 }
