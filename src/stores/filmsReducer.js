@@ -7,6 +7,7 @@ export const filmsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_FILM:
       return {...state, fetchFilms: action.payload}
-    default: return state
+    default:
+      return state
   }
 }
