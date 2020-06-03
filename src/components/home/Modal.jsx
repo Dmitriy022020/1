@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/modal.css';
+import '../../styles/modal.css';
 
 function Modal({ addUser }) {
     const [state, setState] = useState(false);

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import TodoItem from './TodoItem'
+import Comment from './Comment'
 import Context from '../../Context'
-import AddTodo from './AddTodo';
-import '../styles/about.css'
+import AddComment from './AddComment';
+import '../../styles/about.css'
+import {connect} from "react-redux";
 
 function About() {
     const [todos, setTodos] = useState([]);
@@ -31,7 +32,8 @@ function About() {
     const todoList = (
         <ul className='ul_todo'>
             {todos.map(
-                (todo, i) => <TodoItem todo={todo} key={todo.id} i={i} onChange={onChange} />
+                (todo, i) =>
+                  <Comment todo={todo} key={todo.id} i={i} onChange={onChange} />
             )}
         </ul>
 
@@ -40,11 +42,18 @@ function About() {
         <Context.Provider value={{ removeTodo }}>
             <div className="container">
                 <h2>Комментарии</h2>
-                <AddTodo addTodo={addTodo} />
+                <AddComment addTodo={addTodo} />
                 {todos.length ? todoList : <p>Пока нет комментариев...</p>}
             </div>
         </Context.Provider>
     )
 
 };
-export default About
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        newPosts: state.allPosts.posts
+    }
+}
+
+export default connect(mapStateToProps, null)(About)

@@ -6,6 +6,7 @@ export default function Post({post}) {
             <h4>
                 {post.title}
             </h4>
+
         </li>
     )
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Book from './Book.jsx';
 import books from './data.js';
-import '../styles/books.css'
+import '../../styles/books.css'
 
 
 class BookList extends Component {

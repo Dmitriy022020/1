@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import About from './About'
 
 function Home() {
     const [login, setLogin] = useState('');
@@ -22,7 +21,6 @@ function Home() {
         <div className="container">
             <h2>Главная</h2>
             {login ? user : signup}
-            <About/>
         </div>
     )
 };

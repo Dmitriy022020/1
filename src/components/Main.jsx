@@ -4,7 +4,7 @@ import Home from './home/Home';
 import FilmList from './film/FilmList';
 import Details from './book/Details';
 import BookList from './book/BookList';
-import AllPosts from "./posts/AllPosts";
+import AllPosts from "./about/AllPosts";
 
 const Main = () => (
     <Switch>

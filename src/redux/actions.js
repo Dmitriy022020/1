@@ -34,16 +34,16 @@ export function hideAlert() {
     }
 }
 
-export function fetchPost() {
+export function fetchFilm() {
     return async dispatch => {
         dispatch(showLoader())
-        const page = 50
+        const page = 2
+        const release = 2019
         const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538&language=ru'
         const response = await fetch(
-            'https://api.themoviedb.org/3/discover/movie?page='
-            + page +
-            '&release_date=2019'
-            + api_key
+            'https://api.themoviedb.org/3/discover/movie?page=' + page +
+            '&release_date=' + release +
+            api_key
         )
         const json = await response.json()
         dispatch({

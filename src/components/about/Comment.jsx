@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Context from '../../Context'
 
-function TodoItem({ todo, i, onChange }) {
+function Comment({ todo, i, onChange,  }) {
     const { removeTodo } = useContext(Context)
     const classes = []
     const back = ['li_todo']
@@ -26,4 +26,4 @@ function TodoItem({ todo, i, onChange }) {
         </li>
     )
 };
-export default TodoItem        
+export default Comment

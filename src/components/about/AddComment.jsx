@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function AddTodo({addTodo}) {
+function AddComment({addTodo}) {
     const [value, setValue] = useState(' ')
 
     function submitHandler(event) {
@@ -13,10 +13,12 @@ function AddTodo({addTodo}) {
     }
     return (
         <form onSubmit={submitHandler}>
-            <input value={value} onChange={event => setValue(event.target.value)}/>
+            <input
+              value={value}
+              onChange={event => setValue(event.target.value)}/>
             <button className="button" type="submit">Добавить</button>
         </form>
     )
 };
 
-export default AddTodo
+export default AddComment

@@ -8,6 +8,7 @@ function Film(props) {
                 <strong></strong>
                 {film.title}
             </h3>
+            {film.release_date}
             <section>{film.body}</section>
         </div>
 
