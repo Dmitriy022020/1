@@ -17,6 +17,7 @@ const Header = () => (
                 <Link className='li' to='/about'>About</Link>
             </li>
         </ul>
+
     </div>
 );
 export default Header

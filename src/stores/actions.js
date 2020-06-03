@@ -1,12 +1,14 @@
 import {
   CHANGE_POST,
   CREATE_POST,
+  EXIT_PROFIL,
   FETCH_FILM,
   HIDE_ALERT,
   HIDE_LOADER,
   REMOVE_POST,
   SHOW_ALERT,
-  SHOW_LOADER
+  SHOW_LOADER,
+  SIGNIN_PROFIL
 } from "./types";
 
 export function createPost(post) {
@@ -28,8 +30,21 @@ export function changePost(id) {
     type: CHANGE_POST,
     payload: id,
   }
-
 }
+
+export function signinProfil(name) {
+  return {
+    type: SIGNIN_PROFIL,
+    payload: name
+  }
+}
+
+export function exitProfil() {
+  return {
+    type: EXIT_PROFIL,
+  }
+}
+
 export function showLoader() {
   return {
     type: SHOW_LOADER

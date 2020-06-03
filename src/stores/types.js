@@ -1,8 +1,10 @@
-export const CREATE_POST = 'POST/CREATE_POST'
-export const REMOVE_POST = 'POST/REMOVE_POST'
+export const CREATE_POST = 'POST/CREATE_POST';
+export const REMOVE_POST = 'POST/REMOVE_POST';
 export const CHANGE_POST = 'POST/CHANGE_POST';
-export const FETCH_FILM = 'FILM/FETCH_FILM'
-export const SHOW_LOADER = 'APP/SHOW_LOADER'
-export const HIDE_LOADER = 'APP/HIDE_LOADER'
-export const SHOW_ALERT = 'APP/SHOW_ALERT'
-export const HIDE_ALERT = 'APP/HIDE_ALERT'
+export const FETCH_FILM = 'FILM/FETCH_FILM';
+export const SHOW_LOADER = 'APP/SHOW_LOADER';
+export const HIDE_LOADER = 'APP/HIDE_LOADER';
+export const SHOW_ALERT = 'APP/SHOW_ALERT';
+export const HIDE_ALERT = 'APP/HIDE_ALERT';
+export const SIGNIN_PROFIL = 'USER/SIGNIN_PROFIL';
+export const EXIT_PROFIL = 'USER/EXIT_PROFIL';

@@ -2,9 +2,10 @@ import React from 'react';
 import Comment from './Comment'
 import AddComment from './AddComment';
 import './about.css'
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 
-function About({posts}) {
+function About() {
+  const posts = useSelector(state => state.allPosts.posts)
   const postList = (posts.map((post, i) =>
     <Comment
       post={post}
@@ -21,11 +22,4 @@ function About({posts}) {
     </div>
   )
 }
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    posts: state.allPosts.posts
-  }
-}
-
-export default connect(mapStateToProps, null)(About)
+export default About
