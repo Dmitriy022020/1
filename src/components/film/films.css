@@ -20,6 +20,15 @@
 .page_number {
     margin: 5px;
 }
+.page_number:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: darkorchid;
+}
+.page_number:active {
+    color: green;
+    font-weight: bold;
+}
 .back_number {
     display: none;
 }

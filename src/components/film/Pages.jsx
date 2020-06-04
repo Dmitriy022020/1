@@ -26,12 +26,22 @@ export default function Pages() {
     year => <option key={year}>{year}</option>
   );
   const arrP = [];
-  for (let i = 1; i <= pastPage; i++) {
+  const start = (page >= 8) ? (page - 6) : 1;
+  const end = (page <= pastPage - 7) ? (page + 7) : pastPage;
+  for (let i = start; i <= end; i++) {
     arrP.push(i)
   }
-  const pageList = arrP.map(
-    page => <p onClick={() => dispatch(pageFilm(page))} className="page_number" key={page}>{page}</p>
+  const pageList = arrP.map(page =>
+    <p onClick={() => dispatch(pageFilm(page))}
+       className="page_number"
+       key={page}
+       id={page}
+    >
+      {page}
+    </p>
   );
+  const a = pageList.filter(p => p.props.id === page)
+  console.log(a)
   return (
     <div>
       <div className="pages">
@@ -40,15 +50,34 @@ export default function Pages() {
           <select
             value={year}
             onChange={changeHandler}
-            className="page_number">
+          >
             {options}
           </select>
         </form>
       </div>
       <div className="pages">
-        <p onClick={() => dispatch(pageFilm(page - 1))} className={classes_back.join(' ')}> back </p>
+        <p onClick={() => dispatch(pageFilm(1))}
+           className={classes_back.join(' ')}
+        >
+          первая
+        </p>
+        <p onClick={() => dispatch(pageFilm(page - 1))}
+           className={classes_back.join(' ')}
+        >
+          назад
+        </p>
         {pageList}
-        <p onClick={() => dispatch(pageFilm(page + 1))} className={classes_next.join(' ')}> next </p>
+        <p onClick={() => dispatch(pageFilm(page + 1))}
+           className={classes_next.join(' ')}
+        >
+          вперед
+        </p>
+        <p onClick={() => dispatch(pageFilm(pastPage))}
+           className={classes_next.join(' ')}
+        >
+          последняя
+        </p>
+
       </div>
     </div>
   )
