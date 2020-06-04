@@ -4,11 +4,13 @@ import {
   EXIT_PROFIL,
   FETCH_FILM,
   HIDE_ALERT,
-  HIDE_LOADER, PAGE_FILM,
+  HIDE_LOADER,
+  PAGE_FILM,
   REMOVE_POST,
   SHOW_ALERT,
   SHOW_LOADER,
-  SIGNIN_PROFIL, YEAR_FILM
+  SIGNIN_PROFIL,
+  YEAR_FILM
 } from "./types";
 
 export function createPost(post) {
@@ -75,8 +77,9 @@ export function hideAlert() {
   }
 }
 
-export function fetchFilms(page, year) {
-  return async dispatch => {
+export function fetchFilms() {
+  return async (dispatch, getState) => {
+    const {page, year} = getState().allFilms;
     dispatch(showLoader())
     const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538'
     const response = await fetch(
@@ -91,8 +94,6 @@ export function fetchFilms(page, year) {
       payload: json.results,
     })
     dispatch(hideLoader())
-    console.log(page)
-    console.log(year)
   }
 }
 

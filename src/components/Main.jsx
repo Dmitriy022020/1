@@ -5,13 +5,13 @@ import FilmList from './film/FilmList';
 import Details from './book/Details';
 import BookList from './book/BookList';
 import CommentsList from "./about/CommentsList";
+import Overview from "./film/Overview";
 
 const Main = () => (
   <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/films' component={Films}/>
     <Route path='/books' component={Books}/>
-    <Route path='/books/details' component={Details}/>
     <Route path='/about' component={CommentsList}/>
   </Switch>
 );
@@ -19,6 +19,7 @@ const Main = () => (
 const Films = () => (
   <Switch>
     <Route exact path='/films' component={FilmList}/>
+    <Route path='/films/:id' component={Overview}/>
   </Switch>
 );
 

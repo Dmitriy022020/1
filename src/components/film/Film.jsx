@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function Film(props) {
   const {film} = props
@@ -7,8 +8,8 @@ function Film(props) {
       <h3>
         {film.title}
       </h3>
-      {film.release_date}
-      <section>{film.body}</section>
+      <h5>{film.release_date}</h5>
+      <Link className="button" to={`/films/${film.id}`}>подробнее</Link>
     </div>
   )
 }

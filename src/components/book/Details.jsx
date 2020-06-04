@@ -4,6 +4,7 @@ import books from './data.js';
 
 const Details = (props) => {
   const book = books.find(book => book.id === props.match.params.id)
+  console.log(books)
   return (
     <div className="details container">
       <p>{book.description}</p>
