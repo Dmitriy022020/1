@@ -4,11 +4,11 @@ import {
   EXIT_PROFIL,
   FETCH_FILM,
   HIDE_ALERT,
-  HIDE_LOADER,
+  HIDE_LOADER, PAGE_FILM,
   REMOVE_POST,
   SHOW_ALERT,
   SHOW_LOADER,
-  SIGNIN_PROFIL
+  SIGNIN_PROFIL, YEAR_FILM
 } from "./types";
 
 export function createPost(post) {
@@ -75,22 +75,45 @@ export function hideAlert() {
   }
 }
 
-export function fetchFilms() {
+export function fetchFilms(page, year) {
   return async dispatch => {
     dispatch(showLoader())
-    const page = 2
-    const release = 2019
-    const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538&language=ru'
+    const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538'
     const response = await fetch(
-      'https://api.themoviedb.org/3/discover/movie?page=' + page +
-      '&release_date=' + release +
+      'https://api.themoviedb.org/3/discover/movie?language=ru&page=' + page +
+      '&primary_release_year=' + year +
       api_key
     )
+    //'&sort_by=primary_release_date.asc' +
     const json = await response.json()
     dispatch({
       type: FETCH_FILM,
       payload: json.results,
     })
     dispatch(hideLoader())
+    console.log(page)
+    console.log(year)
+  }
+}
+
+export function pageFilm(page) {
+  return dispatch => {
+    dispatch({
+      type: PAGE_FILM,
+      payload: page,
+    })
+    dispatch(fetchFilms(page))
+  }
+}
+
+export function yearFilm(year) {
+  return dispatch => {
+    dispatch({
+      type: YEAR_FILM,
+      payload: year,
+    })
+    dispatch(fetchFilms('', year))
+    console.log(year)
+
   }
 }

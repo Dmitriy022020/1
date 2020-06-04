@@ -4,6 +4,7 @@ import {fetchFilms} from "../../stores/actions";
 import Loader from "../loader/Loader";
 import Film from "./Film";
 import './films.css'
+import Pages from "./Pages";
 
 function FilmList() {
   const dispatch = useDispatch()
@@ -23,16 +24,20 @@ function FilmList() {
       <button
         className="button"
         onClick={() => dispatch(fetchFilms())}
-      >Загрузить</button>
+      >
+        Загрузить
+      </button>
     </div>
   )
   return (
     <div className='container'>
       <h2>Фильмы</h2>
+      {(films.length) ? <Pages/> : null}
       <ul className='ul_f'>
         {(!films.length) ? button : elem}
       </ul>
     </div>
   )
 }
+
 export default FilmList

@@ -11,3 +11,14 @@
     background-color: grey;
     border-radius: 10px;
 }
+.pages {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.page_number {
+    margin: 5px;
+}
+.back_number {
+    display: none;
+}
