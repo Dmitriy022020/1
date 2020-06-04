@@ -115,6 +115,5 @@ export function yearFilm(year) {
     })
     dispatch(fetchFilms('', year))
     console.log(year)
-
   }
 }
