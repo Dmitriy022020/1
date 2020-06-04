@@ -9,7 +9,7 @@ import {
   REMOVE_POST,
   SHOW_ALERT,
   SHOW_LOADER,
-  SIGNIN_PROFIL,
+  SIGNIN_PROFIL, TOTAL_PAGE,
   YEAR_FILM
 } from "./types";
 
@@ -94,6 +94,24 @@ export function fetchFilms() {
       payload: json.results,
     })
     dispatch(hideLoader())
+    dispatch(totalPage())
+  }
+}
+
+export function totalPage() {
+  return async (dispatch, getState) => {
+    const {page, year} = getState().allFilms;
+    const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538'
+    const response = await fetch(
+      'https://api.themoviedb.org/3/discover/movie?language=ru&page=' + page +
+      '&primary_release_year=' + year +
+      api_key
+    )
+    const json = await response.json()
+    dispatch({
+      type: TOTAL_PAGE,
+      payload: json.total_pages,
+    })
   }
 }
 
@@ -103,7 +121,7 @@ export function pageFilm(page) {
       type: PAGE_FILM,
       payload: page,
     })
-    dispatch(fetchFilms(page))
+    dispatch(fetchFilms())
   }
 }
 
@@ -113,7 +131,8 @@ export function yearFilm(year) {
       type: YEAR_FILM,
       payload: year,
     })
-    dispatch(fetchFilms('', year))
+    dispatch(pageFilm(1))
+    dispatch(fetchFilms())
     console.log(year)
   }
 }

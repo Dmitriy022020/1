@@ -14,7 +14,7 @@
 }
 .pages {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
 }
 .page_number {

@@ -10,3 +10,4 @@ export const SIGNIN_PROFIL = 'USER/SIGNIN_PROFIL';
 export const EXIT_PROFIL = 'USER/EXIT_PROFIL';
 export const PAGE_FILM = 'FILM/PAGE_FILM';
 export const YEAR_FILM = 'FILM/YEAR_FILM';
+export const TOTAL_PAGE = 'FILM/TOTAL_PAGE';
