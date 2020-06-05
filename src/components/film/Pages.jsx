@@ -31,17 +31,15 @@ export default function Pages() {
   for (let i = start; i <= end; i++) {
     arrP.push(i)
   }
-  const pageList = arrP.map(page =>
-    <p onClick={() => dispatch(pageFilm(page))}
-       className="page_number"
-       key={page}
-       id={page}
+  const pageList = arrP.map(p =>
+    <p onClick={() => dispatch(pageFilm(p))}
+       className={(page === p) ? "page_active" : "page_number"}
+       key={p}
+       id={p}
     >
-      {page}
+      {p}
     </p>
   );
-  const a = pageList.filter(p => p.props.id === page)
-  console.log(a)
   return (
     <div>
       <div className="pages">

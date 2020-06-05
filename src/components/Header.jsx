@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 const Header = () => {
   const user = useSelector(state => state.users.user)
   return (
-    <div>
+    <div className="header">
       <ul className="nav">
         <li>
           <Link className='li' to='/'>Home</Link>
@@ -15,7 +15,7 @@ const Header = () => {
           <Link className='li' to='/films'>Films</Link>
         </li>
         <li>
-          <Link className='li' to='/books'>Books</Link>
+          <Link className='li' to='/books'>My films</Link>
         </li>
         <li>
           <Link className='li' to='/about'>About</Link>

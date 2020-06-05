@@ -25,7 +25,8 @@
     font-weight: bold;
     color: darkorchid;
 }
-.page_number:active {
+.page_active {
+    margin: 5px;
     color: green;
     font-weight: bold;
 }

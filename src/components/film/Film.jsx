@@ -5,11 +5,10 @@ function Film(props) {
   const {film} = props
   return (
     <div>
-      <h3>
-        {film.title}
-      </h3>
+      <h3>{film.title}</h3>
       <h5>{film.release_date}</h5>
-      <Link className="button" to={`/films/${film.id}`}>подробнее</Link>
+      <button className="button"><Link to={`/films/${film.id}`}>подробнее</Link></button>
+      <button className="button">Добавить в My films</button>
     </div>
   )
 }
