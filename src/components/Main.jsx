@@ -2,16 +2,16 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Home from './home/Home';
 import FilmList from './film/FilmList';
-import Details from './book/Details';
-import BookList from './book/BookList';
-import CommentsList from "./about/CommentsList";
 import Overview from "./film/Overview";
+import MyFilms from "./myFilms/MyFilmList";
+import Details from './myFilms/Details';
+import CommentsList from "./about/CommentsList";
 
 const Main = () => (
   <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/films' component={Films}/>
-    <Route path='/books' component={Books}/>
+    <Route path='/myFilms' component={Books}/>
     <Route path='/about' component={CommentsList}/>
   </Switch>
 );
@@ -25,8 +25,8 @@ const Films = () => (
 
 const Books = () => (
   <Switch>
-    <Route exact path='/books' component={BookList}/>
-    <Route path='/books/:id' component={Details}/>
+    <Route exact path='/myFilms' component={MyFilms}/>
+    <Route path='/myFilms/:id' component={Details}/>
   </Switch>
 );
 

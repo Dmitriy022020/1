@@ -1,11 +1,12 @@
 import {
+  ADD_MYFILM,
   CHANGE_POST,
   CREATE_POST,
   EXIT_PROFIL,
   FETCH_FILM,
   HIDE_ALERT,
   HIDE_LOADER,
-  PAGE_FILM,
+  PAGE_FILM, REMOVE_MYFILM,
   REMOVE_POST,
   SHOW_ALERT,
   SHOW_LOADER,
@@ -81,6 +82,9 @@ export function fetchFilms() {
   return async (dispatch, getState) => {
     const {page, year} = getState().allFilms;
     dispatch(showLoader())
+
+    /* filmsservices axios*/
+
     const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538'
     const response = await fetch(
       'https://api.themoviedb.org/3/discover/movie?language=ru&page=' + page +
@@ -134,5 +138,19 @@ export function yearFilm(year) {
     dispatch(pageFilm(1))
     dispatch(fetchFilms())
     console.log(year)
+  }
+}
+
+export function addMyFilm(myFilms) {
+  return {
+    type: ADD_MYFILM,
+    payload: myFilms,
+  }
+}
+
+export function removeMyFilm(id) {
+  return {
+    type: REMOVE_MYFILM,
+    payload: id,
   }
 }

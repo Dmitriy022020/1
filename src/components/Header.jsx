@@ -15,7 +15,7 @@ const Header = () => {
           <Link className='li' to='/films'>Films</Link>
         </li>
         <li>
-          <Link className='li' to='/books'>My films</Link>
+          <Link className='li' to='/myFilms'>My films</Link>
         </li>
         <li>
           <Link className='li' to='/about'>About</Link>

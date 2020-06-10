@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Book from './Book.jsx';
-import books from './data.js';
 import './books.css'
+import {connect} from "react-redux";
+import MyFilm from "./MyFilm";
 
-
-class BookList extends Component {
+class MyFilmList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,7 +11,7 @@ class BookList extends Component {
       author: '',
       genre: '',
       isOpen: false,
-      sort: ''
+      sort: '',
     }
   };
   nameSearchOn = event => {
@@ -53,17 +52,19 @@ class BookList extends Component {
       if (a[value] < b[value]) return -1;
       return 0
     };
-    const booksFilter = books.filter(nameSearch).filter(authorFilter).filter(genreFilter).sort(listSort)
-    const bookElem = booksFilter.map(
-      book =>
-        <li key={book.id}><Book book={book} /></li>
+    const filmsFilter = this.props.myFilms.filter(nameSearch).filter(authorFilter).filter(genreFilter).sort(listSort)
+    const elem = filmsFilter.map(film =>
+      <li key={film.id} className="film">
+        <MyFilm film={film}/>
+      </li>
     );
-    const authorElem = [...new Set(books.map(item => item.author))].map(
+    const authorElem = [...new Set(this.props.myFilms.map(item => item.author))].map(
       (author) => <option key={author}>{author}</option>
     );
-    const genreElem = [...new Set(books.map(item => item.genre))].map(
+    const genreElem = [...new Set(this.props.myFilms.map(item => item.genre))].map(
       (genre) => <option key={genre}>{genre}</option>
     );
+    console.log(this.props.myFilms)
     const tableFilter = isOpen &&
       <form className='filter'>
         <div>
@@ -94,7 +95,7 @@ class BookList extends Component {
         </div>
       </form>
     return (
-      <div className="list container">
+      <div className="container">
         <h2>Книги</h2>
         <legend>Поиск и фильтр
           <button className="button" onClick={this.handleClick}>
@@ -102,12 +103,18 @@ class BookList extends Component {
           </button>
         </legend>
         {tableFilter}
-        <ul className="ul">
-          {bookElem}
+        <ul className="ul_f">
+          {elem}
         </ul>
       </div>
     );
   };
 };
 
-export default BookList
+const mapStateToProps = state => ({
+  myFilms: state.allFilms.myFilms
+})
+const mapDispatchToProps = {
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MyFilmList)

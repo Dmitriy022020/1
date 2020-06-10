@@ -1,4 +1,4 @@
-.ul, .filter, .main {
+.filter, .main {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
@@ -8,11 +8,16 @@
 .filter {
   margin: 15px;
 }
-.ul li {
-  flex: 0 0 230px;
-  height: 300px;
-  box-shadow: 0 0 3px 3px rgb(172, 171, 171);
-  border-radius: 10px;
+.ul_f {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  list-style: none;
+}
+.film {
+  flex: 0 0 200px;
+  height: 250px;
+  box-shadow: 0 0 3px 3px rgb(153, 153, 153);
   padding: 10px;
   margin: 10px;
   background-color: rgba(200, 200, 200, 0.5);
