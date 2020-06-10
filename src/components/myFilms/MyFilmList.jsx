@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './books.css'
+import './books.css';
+import '../film/films.css';
 import {connect} from "react-redux";
 import MyFilm from "./MyFilm";
 

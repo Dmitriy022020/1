@@ -7,6 +7,7 @@ function Film(props) {
   const {film} = props;
   const myFilms = useSelector(state => state.allFilms.myFilms)
   const dispatch = useDispatch();
+
   const set = myFilms.find(myFilm => myFilm.id === film.id)
   const clickHandler = (event) => {
     event.preventDefault();
@@ -18,14 +19,14 @@ function Film(props) {
   }
   const del =
     <button
-      className="button"
+      className="button red"
       onClick={() => dispatch(removeMyFilm(film.id))}
     >
       Удалить из My films
     </button>
   const add =
     <button
-      className="button"
+      className="button green"
       onClick={clickHandler}
     >
       Добавить в My films

@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilms} from "../../stores/actions";
+import {addMyFilm, fetchFilms} from "../../stores/actions";
 import Loader from "../loader/Loader";
 import Film from "./Film";
 import './films.css'
@@ -10,8 +10,19 @@ function FilmList() {
   const dispatch = useDispatch()
   const films = useSelector(state => state.allFilms.fetchFilms)
   const loading = useSelector(state => state.app.loading)
+  const myFilms = useSelector(state => state.allFilms.myFilms)
+
+  if (myFilms.length === 0) {
+    const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
+    dispatch(addMyFilm(saved))
+  }
+  useEffect(() => {
+    localStorage.setItem('myFilms', JSON.stringify(myFilms))
+  }, [myFilms])
+
   if (loading)
     return <Loader/>
+
   console.log(films)
 
   const elem = films.map(film =>

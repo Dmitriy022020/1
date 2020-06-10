@@ -12,6 +12,18 @@
     margin: 10px;
     background-color: rgba(200, 200, 200, 0.5);
 }
+.green {
+    background: #33b462;
+}
+.green:hover {
+    background: rgba(51, 180, 98, 0.5);
+}
+.red {
+    background: #e34646;
+}
+.red:hover {
+    background: rgba(227, 70, 70, 0.5);
+}
 .pages {
     display: flex;
     flex-flow: row wrap;
@@ -40,5 +52,4 @@
     box-shadow: 0 0 3px 3px rgb(99, 99, 99);
     padding: 20px;
     background-color: rgba(200, 200, 200, 0.5);
-
 }

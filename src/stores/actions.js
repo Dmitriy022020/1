@@ -93,6 +93,7 @@ export function fetchFilms() {
     )
     //'&sort_by=primary_release_date.asc' +
     const json = await response.json()
+
     dispatch({
       type: FETCH_FILM,
       payload: json.results,
@@ -141,10 +142,10 @@ export function yearFilm(year) {
   }
 }
 
-export function addMyFilm(myFilms) {
+export function addMyFilm(film) {
   return {
     type: ADD_MYFILM,
-    payload: myFilms,
+    payload: film,
   }
 }
 

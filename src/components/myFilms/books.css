@@ -8,20 +8,6 @@
 .filter {
   margin: 15px;
 }
-.ul_f {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-  list-style: none;
-}
-.film {
-  flex: 0 0 200px;
-  height: 250px;
-  box-shadow: 0 0 3px 3px rgb(153, 153, 153);
-  padding: 10px;
-  margin: 10px;
-  background-color: rgba(200, 200, 200, 0.5);
-}
 .genre {
   font-style: italic;
   font-size: 1em;
