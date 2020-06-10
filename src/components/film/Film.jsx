@@ -1,22 +1,41 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {addMyFilm} from "../../stores/actions";
-import {useDispatch} from "react-redux";
+import {addMyFilm, removeMyFilm} from "../../stores/actions";
+import {useDispatch, useSelector} from "react-redux";
 
 function Film(props) {
-  const {film} = props
-  const dispatch = useDispatch()
+  const {film} = props;
+  const myFilms = useSelector(state => state.allFilms.myFilms)
+  const dispatch = useDispatch();
+  const set = myFilms.find(myFilm => myFilm.id === film.id)
   const clickHandler = (event) => {
     event.preventDefault();
-    dispatch(addMyFilm(film))
-    console.log(film)
+    if (!set) {
+      dispatch(addMyFilm(film));
+      console.log(film)
+    } else {
+    }
   }
+  const del =
+    <button
+      className="button"
+      onClick={() => dispatch(removeMyFilm(film.id))}
+    >
+      Удалить из My films
+    </button>
+  const add =
+    <button
+      className="button"
+      onClick={clickHandler}
+    >
+      Добавить в My films
+    </button>
   return (
     <div>
       <h3>{film.title}</h3>
       <h5>{film.release_date}</h5>
       <button className="button"><Link to={`/films/${film.id}`}>подробнее</Link></button>
-      <button className="button" onClick={clickHandler}>Добавить в My films</button>
+      {set ? del : add}
     </div>
   )
 }
