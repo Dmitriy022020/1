@@ -14,7 +14,7 @@ function MyFilmList() {
   const [sort, setSort] = useState('');
   const [state, setState] = useState(false);
 
-  if (!myFilms) {
+  if (myFilms.length === 0) {
     const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
     dispatch(addMyFilm(saved))
   }

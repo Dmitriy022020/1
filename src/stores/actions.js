@@ -83,10 +83,10 @@ export function fetchFilms() {
   return async (dispatch, getState) => {
     const {page, year} = getState().allFilms;
     dispatch(showLoader());
-    const json = await filmsService(page, year);
+    const response = await filmsService(page, year);
     dispatch({
       type: FETCH_FILM,
-      payload: json.results,
+      payload: response.data.results,
     })
     dispatch(hideLoader());
     dispatch(totalPage());

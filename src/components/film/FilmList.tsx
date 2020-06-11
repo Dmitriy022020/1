@@ -12,13 +12,16 @@ function FilmList() {
   const loading = useSelector(state => state.app.loading)
   const myFilms = useSelector(state => state.allFilms.myFilms)
 
-  if (!myFilms) {
+
+  if (myFilms.length === 0) {
     const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
     dispatch(addMyFilm(saved))
   }
+
   useEffect(() => {
     localStorage.setItem('myFilms', JSON.stringify(myFilms))
   }, [myFilms])
+
   if (loading)
     return <Loader/>
 
