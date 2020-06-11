@@ -14,7 +14,7 @@ function MyFilmList() {
   const [sort, setSort] = useState('');
   const [state, setState] = useState(false);
 
-  if (myFilms.length === 0) {
+  if (!myFilms) {
     const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
     dispatch(addMyFilm(saved))
   }
@@ -37,7 +37,6 @@ function MyFilmList() {
   const handleClick = () => {
     setState(!state)
   };
- // const {isOpen} = state;
   const nameSearch = (item) => {
     const valueName = name.toLowerCase();
     if (valueName === '') return true;

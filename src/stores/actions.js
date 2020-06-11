@@ -13,6 +13,7 @@ import {
   SIGNIN_PROFIL, TOTAL_PAGE,
   YEAR_FILM
 } from "./types";
+import {filmsService} from "./services";
 
 export function createPost(post) {
   return {
@@ -81,25 +82,14 @@ export function hideAlert() {
 export function fetchFilms() {
   return async (dispatch, getState) => {
     const {page, year} = getState().allFilms;
-    dispatch(showLoader())
-
-    /* filmsservices axios*/
-
-    const api_key = '&api_key=19e4bdec1949a727168540afcf0d6538'
-    const response = await fetch(
-      'https://api.themoviedb.org/3/discover/movie?language=ru&page=' + page +
-      '&primary_release_year=' + year +
-      api_key
-    )
-    //'&sort_by=primary_release_date.asc' +
-    const json = await response.json()
-
+    dispatch(showLoader());
+    const json = await filmsService(page, year);
     dispatch({
       type: FETCH_FILM,
       payload: json.results,
     })
-    dispatch(hideLoader())
-    dispatch(totalPage())
+    dispatch(hideLoader());
+    dispatch(totalPage());
   }
 }
 
