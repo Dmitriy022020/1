@@ -1,10 +1,15 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changePost, removePost} from "../../stores/actions";
+import {Post, RootState} from "../../types/common";
 
-function Comment({post, i}) {
+interface IProps {
+  post: Post
+  i: number
+}
+function Comment ({post, i}:IProps) {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.users.user)
+  const user = useSelector((state: RootState) => state.users.user)
   const classes = ['li_todo']
   if (post.completed) {
     classes.push('background')

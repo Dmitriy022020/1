@@ -9,7 +9,7 @@ function Film(props) {
   const dispatch = useDispatch();
 
   const set = myFilms.find(myFilm => myFilm.id === film.id)
-  const clickHandler = (event) => {
+  const clickHandler = (event: React.ChangeEvent) => {
     event.preventDefault();
     if (!set) {
       dispatch(addMyFilm(film));

@@ -11,7 +11,7 @@ class AddComment extends Component {
     };
   }
 
-  submitHandler = (event) => {
+  submitHandler = (event: React.ChangeEvent) => {
     event.preventDefault();
     const {title} = this.state;
     if (this.props.user) {
@@ -31,7 +31,8 @@ class AddComment extends Component {
       return this.props.showAlert('Необходимо авторизоваться')
     }
   };
-  changeHandler = event => this.setState({title: event.target.value});
+  changeHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
+    this.setState({title: event.target.value});
 
   render() {
     return (

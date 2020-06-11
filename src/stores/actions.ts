@@ -14,29 +14,30 @@ import {
   YEAR_FILM
 } from "./types";
 import {filmsService} from "./services";
+import {Post} from "../types/common";
 
-export function createPost(post) {
+export function createPost(post: Post) {
   return {
     type: CREATE_POST,
     payload: post,
   }
 }
 
-export function removePost(id) {
+export function removePost(id: number) {
   return {
     type: REMOVE_POST,
     payload: id,
   }
 }
 
-export function changePost(id) {
+export function changePost(id: number) {
   return {
     type: CHANGE_POST,
     payload: id,
   }
 }
 
-export function signinProfil(name) {
+export function signinProfil(name: string) {
   return {
     type: SIGNIN_PROFIL,
     payload: name
@@ -61,7 +62,7 @@ export function hideLoader() {
   }
 }
 
-export function showAlert(text) {
+export function showAlert(text: string) {
   return dispatch => {
     dispatch({
       type: SHOW_ALERT,
@@ -110,7 +111,7 @@ export function totalPage() {
   }
 }
 
-export function pageFilm(page) {
+export function pageFilm(page: number) {
   return dispatch => {
     dispatch({
       type: PAGE_FILM,
@@ -120,7 +121,7 @@ export function pageFilm(page) {
   }
 }
 
-export function yearFilm(year) {
+export function yearFilm(year: number) {
   return dispatch => {
     dispatch({
       type: YEAR_FILM,
@@ -132,14 +133,14 @@ export function yearFilm(year) {
   }
 }
 
-export function addMyFilm(film) {
+export function addMyFilm(film: object) {
   return {
     type: ADD_MYFILM,
     payload: film,
   }
 }
 
-export function removeMyFilm(id) {
+export function removeMyFilm(id: number) {
   return {
     type: REMOVE_MYFILM,
     payload: id,
