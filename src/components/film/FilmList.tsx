@@ -1,26 +1,18 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addMyFilm, fetchFilms} from "../../stores/actions";
+import {fetchFilms, loadLocal} from "../../stores/filmsActions";
 import Loader from "../loader/Loader";
 import Film from "./Film";
 import './films.css'
 import Pages from "./Pages";
+import {RootState} from "../../types/common";
 
 function FilmList() {
   const dispatch = useDispatch()
-  const films = useSelector(state => state.allFilms.fetchFilms)
-  const loading = useSelector(state => state.app.loading)
-  const myFilms = useSelector(state => state.allFilms.myFilms)
+  const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
+  const loading = useSelector((state: RootState) => state.app.loading)
 
-
-  if (myFilms.length === 0) {
-    const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
-    dispatch(addMyFilm(saved))
-  }
-
-  useEffect(() => {
-    localStorage.setItem('myFilms', JSON.stringify(myFilms))
-  }, [myFilms])
+  dispatch(loadLocal())
 
   if (loading)
     return <Loader/>

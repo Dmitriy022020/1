@@ -2,16 +2,26 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {createPost, showAlert} from "../../stores/actions";
 import {Alert} from "./Alert";
+import {NewPost, RootState} from "../../types/common";
 
-class AddComment extends Component {
-  constructor(props) {
+interface IProps {
+  user: string,
+  createPost: (newPost: NewPost) => never
+  showAlert: (arg: string) => never
+  alert: string
+}
+interface IState {
+  title: string,
+}
+class AddComment extends Component<IProps, IState, React.ClassicComponent> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       title: ''
     };
   }
 
-  submitHandler = (event: React.ChangeEvent) => {
+  submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const {title} = this.state;
     if (this.props.user) {
@@ -47,7 +57,7 @@ class AddComment extends Component {
   };
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   alert: state.app.alert,
   user: state.users.user,
 });
@@ -55,4 +65,5 @@ const mapDispatchToProps = {
   createPost,
   showAlert,
 };
+// @ts-ignore
 export default connect(mapStateToProps, mapDispatchToProps)(AddComment)

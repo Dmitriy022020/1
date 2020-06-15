@@ -8,7 +8,7 @@ function Modal() {
   const [state, setState] = useState(false);
   const [value, setValue] = useState(' ');
 
-  function submitHandler(event: React.ChangeEvent) {
+  function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (value.trim()) {
       dispatch(signinProfil(value))

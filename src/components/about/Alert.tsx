@@ -1,10 +1,10 @@
 import React from "react";
 
-interface AlertProps {
+interface IProps {
   text: string
 }
 
-export const Alert: React.FC<AlertProps> = ({text}) => {
+export const Alert: React.FC<IProps> = ({text}) => {
   return (
     <div className="alert">
       {text}

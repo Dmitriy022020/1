@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {removeMyFilm} from "../../stores/actions";
+import {removeMyFilm} from "../../stores/filmsActions";
 
-function MyFilm(props) {
+function MyFilm(props: any) {
   const {film} = props
   const dispatch = useDispatch()
   return (

@@ -2,9 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Profil} from "./Profil";
 import {useSelector} from "react-redux";
+import {RootState} from "../types/common";
 
 const Header = () => {
-  const user = useSelector(state => state.users.user)
+  const user = useSelector((state: RootState) => state.users.user)
   return (
     <div className="header">
       <ul className="nav">

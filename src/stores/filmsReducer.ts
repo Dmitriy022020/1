@@ -1,5 +1,13 @@
 import {ADD_MYFILM, FETCH_FILM, PAGE_FILM, REMOVE_MYFILM, TOTAL_PAGE, YEAR_FILM} from "./types";
+import {Film} from "../types/common";
 
+interface IState {
+  fetchFilms: Film[]
+  page: number,
+  year: number,
+  pastPage: number,
+  myFilms: Film[],
+}
 const initialState = {
   fetchFilms: [],
   page: 1,
@@ -7,7 +15,7 @@ const initialState = {
   pastPage: 1,
   myFilms: [],
 }
-export const filmsReducer = (state = initialState, action) => {
+export const filmsReducer = (state: IState = initialState, action: any): IState => {
   switch (action.type) {
     case FETCH_FILM:
       return {...state, fetchFilms: action.payload}

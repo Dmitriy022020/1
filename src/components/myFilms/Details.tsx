@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import {useSelector} from "react-redux";
+import {Film, RootState} from "../../types/common";
 
-const Overview = (props) => {
-  const films = useSelector(state => state.allFilms.fetchFilms)
-  const film = films.find(film => film.id === Number(props.match.params.id))
+const Overview = (props: any) => {
+  const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
+  // @ts-ignore
+  const film: Film = films.find(film => film.id === Number(props.match.params.id))
   return (
     <div className="over container">
       <h3>{film.title}</h3>

@@ -1,11 +1,12 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {pageFilm, yearFilm} from "../../stores/actions";
+import {pageFilm, yearFilm} from "../../stores/filmsActions";
+import {RootState} from "../../types/common";
 
 export default function Pages() {
-  const year = useSelector(state => state.allFilms.year);
-  const page = useSelector(state => state.allFilms.page);
-  const pastPage = useSelector(state => state.allFilms.pastPage)
+  const year = useSelector((state: RootState) => state.allFilms.year);
+  const page = useSelector((state: RootState) => state.allFilms.page);
+  const pastPage = useSelector((state: RootState) => state.allFilms.pastPage)
   const dispatch = useDispatch();
   const classes_back = ['page_number'];
   const classes_next = ['page_number'];
@@ -15,7 +16,7 @@ export default function Pages() {
   if (page === pastPage) {
     classes_next.push('back_number')
   }
-  const changeHandler = event => {
+  const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(yearFilm(event.target.value));
   };
   const arrY = [];
@@ -35,7 +36,7 @@ export default function Pages() {
     <p onClick={() => dispatch(pageFilm(p))}
        className={(page === p) ? "page_active" : "page_number"}
        key={p}
-       id={p}
+    //   id={p}
     >
       {p}
     </p>

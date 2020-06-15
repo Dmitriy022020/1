@@ -1,20 +1,20 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {addMyFilm, removeMyFilm} from "../../stores/actions";
+import {addMyFilm, removeMyFilm} from "../../stores/filmsActions";
 import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../types/common";
 
-function Film(props) {
+function Film(props: any) {
   const {film} = props;
-  const myFilms = useSelector(state => state.allFilms.myFilms)
+  const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
   const dispatch = useDispatch();
 
   const set = myFilms.find(myFilm => myFilm.id === film.id)
-  const clickHandler = (event: React.ChangeEvent) => {
+  const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!set) {
       dispatch(addMyFilm(film));
       console.log(film)
-    } else {
     }
   }
   const del =

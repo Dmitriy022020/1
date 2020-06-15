@@ -2,9 +2,10 @@ import React from 'react';
 import Modal from './Modal';
 import {useDispatch, useSelector} from "react-redux";
 import {exitProfil} from "../../stores/actions";
+import {RootState} from "../../types/common";
 
 function Home() {
-  const user = useSelector(state => state.users.user)
+  const user = useSelector((state: RootState) => state.users.user)
   const dispatch = useDispatch()
 
   const signup =
