@@ -10,11 +10,22 @@ export async function filmsService(page: number, year: number) {
   )
   return response
 }
+//'&sort_by=primary_release_date.asc' +
 
 export function setLocal() {
   return (dispatch: any, getState: any) => {
     const {myFilms} = getState().allFilms
     localStorage.setItem('myFilms', JSON.stringify(myFilms))
+    console.log('записано в localStorage', myFilms)
   }
 }
-//'&sort_by=primary_release_date.asc' +
+/*
+  useEffect(() => {
+      const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
+      dispatch(addMyFilm(saved))
+  }, [dispatch])
+
+  useEffect(() => {
+    localStorage.setItem('myFilms', JSON.stringify(myFilms))
+  }, [myFilms])
+*/
