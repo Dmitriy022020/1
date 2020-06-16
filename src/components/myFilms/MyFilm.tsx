@@ -14,8 +14,11 @@ function MyFilm(props: IProps) {
     <div>
       <h3>{film.title}</h3>
       <h5>{film.release_date}</h5>
+      <span>
+        рейтинг <strong>{film.vote_average}</strong>
+      </span>
       <button className="button">
-        <Link to={{pathname:`/films/${film.id}`, state: 'myFilms'}}>
+        <Link to={{pathname:`/myFilms/${film.id}`, state: 'myFilms'}}>
           подробнее
         </Link>
       </button>

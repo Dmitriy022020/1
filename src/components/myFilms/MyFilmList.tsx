@@ -6,55 +6,56 @@ import MyFilm from "./MyFilm";
 import {loadMyFilms} from "../../stores/filmsActions";
 import {TFilm, RootState} from "../../types/common";
 
-
+type Sort = 'title' | 'release_date' | 'vote_average'
 function MyFilmList() {
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
   const dispatch = useDispatch()
-  const [name, setName] = useState('');
-  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('');
+  const [release, setRelease] = useState('');
   const [genre, setGenre] = useState('');
-  const [sort, setSort] = useState<'id' | 'title' | 'overview'>('title');
+  const [sort, setSort] = useState<Sort>('title');
   const [state, setState] = useState(false);
 
   useEffect(() => {
     dispatch(loadMyFilms())
   }, [dispatch])
+  console.log()
 
   const nameSearchOn = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value)
+    setTitle(event.target.value)
   };
-  const authorSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAuthor(event.target.value)
+  const releaseSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setRelease(event.target.value)
   };
   const genreSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setGenre(event.target.value)
   };
   const sortSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSort(event.target.value as 'id' | 'title' | 'overview')
+    setSort(event.target.value as Sort)
   };
   const handleClick = () => {
     setState(!state)
   };
   const nameSearch = (item: TFilm): boolean => {
-    const valueName = name.toLowerCase();
+    const valueName = title.toLowerCase();
     if (valueName === '') return true;
     else if (item.title.toLowerCase().includes(valueName)) return true;
     return false
   };
-  const authorFilter = (item: TFilm): boolean => {
-    const valueAuthor = author;
-    return valueAuthor === '' || valueAuthor === item.title
+  const releaseFilter = (item: TFilm): boolean => {
+    const valueAuthor = release;
+    return valueAuthor === '' || valueAuthor === item.release_date.toString()
   };
   const genreFilter = (item: TFilm): boolean => {
     const valueGenre = genre;
-    return valueGenre === '' || item.overview === valueGenre
+    return valueGenre === '' || item.title === valueGenre
   };
   const listSort = (a: TFilm, b: TFilm) => {
     if (a[sort] > b[sort]) return 1;
     if (a[sort] < b[sort]) return -1;
     return 0
   };
-  const filmsFilter = myFilms.filter(nameSearch).filter(authorFilter).filter(genreFilter).sort(listSort)
+  const filmsFilter = myFilms.filter(nameSearch).filter(releaseFilter).filter(genreFilter).sort(listSort)
   const elem = filmsFilter.map(film =>
     <li key={film.id} className="film">
       <MyFilm film={film}/>
@@ -64,12 +65,12 @@ function MyFilmList() {
   function onlyUnique(value: string, index: number, self: string[]) {
     return self.indexOf(value) === index;
   }
-
-  const authorElem = myFilms.map(item => item.title).filter(onlyUnique).map(
-    (author) => <option key={author}>{author}</option>
+// 4 символа года
+  const releaseElem = myFilms.map(item => item.release_date.toString()).filter(onlyUnique).map(
+    (date) => <option key={date}>{date}</option>
   );
 
-  const genreElem = [...new Set(myFilms.map(item => item.overview))].map(
+  const genreElem = [...new Set(myFilms.map(item => item.title))].map(
     (genre) => <option key={genre}>{genre}</option>
   );
   const tableFilter = state &&
@@ -77,16 +78,16 @@ function MyFilmList() {
       <div>
         <label>Поиск</label>
         <input
-          value={name}
+          value={title}
           type='text'
           placeholder="введите наименование"
           onChange={nameSearchOn}/>
       </div>
       <div>
-        <label>Автор</label>
-        <select value={author} onChange={authorSelect}>
+        <label>Год релиза</label>
+        <select value={release} onChange={releaseSelect}>
           <option value=''>все</option>
-          {authorElem}
+          {releaseElem}
         </select>
       </div>
       <div>
@@ -99,9 +100,9 @@ function MyFilmList() {
       <div>
         <label>Сортировать</label>
         <select value={sort} onChange={sortSelect}>
-          <option value='id'>по умолчанию (id)</option>
           <option value='title'>по названию</option>
-          <option value='overview'>по автору</option>
+          <option value='release_date'>по дате релиза</option>
+          <option value='vote_average'>по рейтингу</option>
         </select>
       </div>
     </form>

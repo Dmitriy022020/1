@@ -15,10 +15,16 @@ interface IProps extends RouteComponentProps<MatchParams> {
 const Overview = (props: IProps) => {
   const backLink = props.location.state
   const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
-  const film = films.find(film => film.id === Number(props.match.params.id))
+  const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
+
+  const view = myFilms || films
+  console.log(films)
+  console.log(myFilms)
+
+  const film = view.find(film => film.id === Number(props.match.params.id))
   if (!film) {
     return (
-      <div>
+      <div className="over container">
         <p>Фильм не найден</p>
       </div>
     )

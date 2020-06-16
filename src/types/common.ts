@@ -12,6 +12,7 @@ export type TFilm = {
   id: number,
   release_date: Date,
   overview: string,
+  vote_average: number
 }
 export type RootState = ReturnType<typeof reducers>
 
