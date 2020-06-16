@@ -1,10 +1,10 @@
 import {filmsService, setLocal} from "./services";
-import {ADD_MYFILM, FETCH_FILM, PAGE_FILM, REMOVE_MYFILM, TOTAL_PAGE, YEAR_FILM} from "./types";
-import {hideLoader, showLoader} from "./actions";
-import {useEffect} from "react";
+import {ADD_MYFILM, FETCH_FILM, LOAD_MYFILM, PAGE_FILM, REMOVE_MYFILM, TOTAL_PAGE, YEAR_FILM} from "./types";
+import {hideLoader, showLoader} from "./appActions";
+import {Dispatch, TFilm, RootState} from "../types/common";
 
 export function fetchFilms() {
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
     const {page, year} = getState().allFilms;
     dispatch(showLoader());
     const response = await filmsService(page, year);
@@ -18,7 +18,7 @@ export function fetchFilms() {
 }
 
 export function totalPage() {
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
     const {page, year} = getState().allFilms;
     const resp = await filmsService(page, year);
     dispatch({
@@ -29,7 +29,7 @@ export function totalPage() {
 }
 
 export function pageFilm(page: number) {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: PAGE_FILM,
       payload: page,
@@ -39,7 +39,7 @@ export function pageFilm(page: number) {
 }
 
 export function yearFilm(year: string) {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: YEAR_FILM,
       payload: year,
@@ -50,20 +50,19 @@ export function yearFilm(year: string) {
   }
 }
 
-export function loadLocal() {
-  return (dispatch: any) => {
-    useEffect(() => {
-      const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
-      dispatch({
-        type: ADD_MYFILM,
-        payload: saved,
-      })
-    }, [dispatch])
+export function loadMyFilms() {
+  return (dispatch: Dispatch) => {
+    const saved = JSON.parse(localStorage.getItem('myFilms') || '[]')
+    dispatch({
+      type: LOAD_MYFILM,
+      payload: saved,
+    })
+    console.log('пришло из localStorage', saved)
   }
 }
 
-export function addMyFilm(film: object) {
-  return (dispatch: any) => {
+export function addMyFilm(film: TFilm) {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: ADD_MYFILM,
       payload: film,
@@ -73,7 +72,7 @@ export function addMyFilm(film: object) {
 }
 
 export function removeMyFilm(id: number) {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: REMOVE_MYFILM,
       payload: id,

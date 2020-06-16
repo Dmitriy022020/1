@@ -1,16 +1,11 @@
-import React, {useState} from 'react';
-import './books.css';
+import React, {useEffect, useState} from 'react';
+import './myFilms.css';
 import '../film/films.css';
 import {useDispatch, useSelector} from "react-redux";
 import MyFilm from "./MyFilm";
-import {loadLocal} from "../../stores/filmsActions";
-import {RootState} from "../../types/common";
+import {loadMyFilms} from "../../stores/filmsActions";
+import {TFilm, RootState} from "../../types/common";
 
-interface IProps {
-  name: string,
-  author: string,
-  genre: string,
-}
 
 function MyFilmList() {
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
@@ -18,10 +13,12 @@ function MyFilmList() {
   const [name, setName] = useState('');
   const [author, setAuthor] = useState('');
   const [genre, setGenre] = useState('');
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState<'id' | 'title' | 'overview'>('title');
   const [state, setState] = useState(false);
 
-  dispatch(loadLocal())
+  useEffect(() => {
+    dispatch(loadMyFilms())
+  }, [dispatch])
 
   const nameSearchOn = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
@@ -33,47 +30,48 @@ function MyFilmList() {
     setGenre(event.target.value)
   };
   const sortSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSort(event.target.value)
+    setSort(event.target.value as 'id' | 'title' | 'overview')
   };
   const handleClick = () => {
     setState(!state)
   };
-  const nameSearch = (item: IProps): boolean => {
+  const nameSearch = (item: TFilm): boolean => {
     const valueName = name.toLowerCase();
     if (valueName === '') return true;
-    else if (item.name.toLowerCase().includes(valueName)) return true;
+    else if (item.title.toLowerCase().includes(valueName)) return true;
     return false
   };
-  const authorFilter = (item: IProps): boolean => {
+  const authorFilter = (item: TFilm): boolean => {
     const valueAuthor = author;
-    return valueAuthor === '' || valueAuthor === item.author
+    return valueAuthor === '' || valueAuthor === item.title
   };
-  const genreFilter = (item: IProps): boolean => {
+  const genreFilter = (item: TFilm): boolean => {
     const valueGenre = genre;
-    return valueGenre === '' || item.genre === valueGenre
+    return valueGenre === '' || item.overview === valueGenre
   };
-  const listSort = (a: string, b: string) => {
-    const value: any = sort;
-    if (a[value] > b[value]) return 1;
-    if (a[value] < b[value]) return -1;
+  const listSort = (a: TFilm, b: TFilm) => {
+    if (a[sort] > b[sort]) return 1;
+    if (a[sort] < b[sort]) return -1;
     return 0
   };
-  // @ts-ignore
   const filmsFilter = myFilms.filter(nameSearch).filter(authorFilter).filter(genreFilter).sort(listSort)
   const elem = filmsFilter.map(film =>
     <li key={film.id} className="film">
       <MyFilm film={film}/>
     </li>
   );
-  // @ts-ignore
-  const authorElem = [...new Set(myFilms.map(item => item.author))].map(
+
+  function onlyUnique(value: string, index: number, self: string[]) {
+    return self.indexOf(value) === index;
+  }
+
+  const authorElem = myFilms.map(item => item.title).filter(onlyUnique).map(
     (author) => <option key={author}>{author}</option>
   );
-  // @ts-ignore
-  const genreElem = [...new Set(myFilms.map(item => item.genre))].map(
+
+  const genreElem = [...new Set(myFilms.map(item => item.overview))].map(
     (genre) => <option key={genre}>{genre}</option>
   );
-  console.log(myFilms)
   const tableFilter = state &&
     <form className='filter'>
       <div>
@@ -102,8 +100,8 @@ function MyFilmList() {
         <label>Сортировать</label>
         <select value={sort} onChange={sortSelect}>
           <option value='id'>по умолчанию (id)</option>
-          <option value='name'>по названию</option>
-          <option value='author'>по автору</option>
+          <option value='title'>по названию</option>
+          <option value='overview'>по автору</option>
         </select>
       </div>
     </form>
@@ -121,6 +119,6 @@ function MyFilmList() {
       </ul>
     </div>
   );
-};
+}
 
 export default MyFilmList

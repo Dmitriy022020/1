@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './modal.css';
 import {useDispatch} from "react-redux";
-import {signinProfil} from "../../stores/actions";
+import {signinProfil} from "../../stores/appActions";
 
 function Modal() {
   const dispatch = useDispatch()

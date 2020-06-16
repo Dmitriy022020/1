@@ -1,12 +1,13 @@
 import {CHANGE_POST, CREATE_POST, REMOVE_POST} from "./types";
 import {Post} from "../types/common";
+import {IAction} from "./reducers";
 interface IState {
   posts: Post[]
 }
 const initialState = {
   posts: [],
 };
-export const postsReducer = (state: IState = initialState, action: any): IState => {
+export const postsReducer = (state: IState = initialState, action: IAction): IState => {
   switch (action.type) {
     case CREATE_POST:
       return {...state, posts: state.posts.concat(action.payload)}

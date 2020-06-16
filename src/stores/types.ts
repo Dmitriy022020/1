@@ -13,3 +13,4 @@ export const SHOW_ALERT = 'APP/SHOW_ALERT';
 export const HIDE_ALERT = 'APP/HIDE_ALERT';
 export const ADD_MYFILM = 'MYFILM/ADD_MYFILM'
 export const REMOVE_MYFILM = 'MYFILM/REMOVE_MYFILM'
+export const LOAD_MYFILM = 'MYFILM/LOAD_MYFILM'

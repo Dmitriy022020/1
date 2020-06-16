@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changePost, removePost} from "../../stores/actions";
+import {changePost, removePost} from "../../stores/appActions";
 import {Post, RootState} from "../../types/common";
 
 interface IProps {

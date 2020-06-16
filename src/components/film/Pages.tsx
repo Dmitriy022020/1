@@ -36,7 +36,6 @@ export default function Pages() {
     <p onClick={() => dispatch(pageFilm(p))}
        className={(page === p) ? "page_active" : "page_number"}
        key={p}
-    //   id={p}
     >
       {p}
     </p>

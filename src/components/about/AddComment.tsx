@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPost, showAlert} from "../../stores/actions";
+import {createPost, showAlert} from "../../stores/appActions";
 import {Alert} from "./Alert";
-import {NewPost, RootState} from "../../types/common";
+import {Post, RootState} from "../../types/common";
 
 interface IProps {
-  user: string,
-  createPost: (newPost: NewPost) => never
-  showAlert: (arg: string) => never
-  alert: string
+  user: string | null
+  createPost: (newPost: Post) => void
+  showAlert: (arg: string) => void
+  alert: string | null
 }
+
 interface IState {
   title: string,
 }
-class AddComment extends Component<IProps, IState, React.ClassicComponent> {
+class AddComment extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -28,7 +29,7 @@ class AddComment extends Component<IProps, IState, React.ClassicComponent> {
       if (title.trim()) {
         const newPost = {
           title,
-          id: Date.now().toString(),
+          id: Date.now(),
           completed: false,
         }
         this.props.createPost(newPost)
@@ -65,5 +66,5 @@ const mapDispatchToProps = {
   createPost,
   showAlert,
 };
-// @ts-ignore
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddComment)

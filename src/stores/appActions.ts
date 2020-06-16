@@ -9,7 +9,7 @@ import {
   SHOW_LOADER,
   SIGNIN_PROFIL
 } from "./types";
-import {Post} from "../types/common";
+import {Dispatch, Post} from "../types/common";
 
 export function createPost(post: Post) {
   return {
@@ -58,7 +58,7 @@ export function hideLoader() {
 }
 
 export function showAlert(text: string) {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch({
       type: SHOW_ALERT,
       payload: text

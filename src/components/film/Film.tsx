@@ -2,9 +2,12 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {addMyFilm, removeMyFilm} from "../../stores/filmsActions";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../types/common";
+import {TFilm, RootState} from "../../types/common";
 
-function Film(props: any) {
+interface IProps {
+  film: TFilm
+}
+function Film(props: IProps) {
   const {film} = props;
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
   const dispatch = useDispatch();
@@ -35,7 +38,11 @@ function Film(props: any) {
     <div>
       <h3>{film.title}</h3>
       <h5>{film.release_date}</h5>
-      <button className="button"><Link to={`/films/${film.id}`}>подробнее</Link></button>
+      <button className="button">
+        <Link to={{pathname:`/films/${film.id}`, state: 'films'}}>
+          подробнее
+        </Link>
+      </button>
       {set ? del : add}
     </div>
   )

@@ -4,6 +4,11 @@ import {appReducer} from "./appReducer";
 import {filmsReducer} from "./filmsReducer";
 import {userReducer} from "./userReducer";
 
+export interface IAction<T = string, R = any> {
+  type: T;
+  payload: R;
+}
+
 export const reducers = combineReducers({
   allFilms: filmsReducer,
   allPosts: postsReducer,
