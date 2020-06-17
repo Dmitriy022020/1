@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import './myFilms.css';
 import '../film/films.css';
 import {useDispatch, useSelector} from "react-redux";
-import MyFilm from "./MyFilm";
-import {loadMyFilms} from "../../stores/filmsActions";
+import {genreList, loadMyFilms} from "../../stores/filmsActions";
 import {TFilm, RootState} from "../../types/common";
+import Film from "../film/Film";
 
-type Sort = 'title' | 'release_date' | 'vote_average'
+type Sort = 'title' | 'release_date' | 'vote_average';
+
 function MyFilmList() {
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
+  //const genres = useSelector((state: RootState) => state.allFilms.genres);
   const dispatch = useDispatch()
   const [title, setTitle] = useState('');
   const [release, setRelease] = useState('');
@@ -18,8 +20,8 @@ function MyFilmList() {
 
   useEffect(() => {
     dispatch(loadMyFilms())
+    dispatch(genreList())
   }, [dispatch])
-  console.log()
 
   const nameSearchOn = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
@@ -44,34 +46,40 @@ function MyFilmList() {
   };
   const releaseFilter = (item: TFilm): boolean => {
     const valueAuthor = release;
-    return valueAuthor === '' || valueAuthor === item.release_date.toString()
+    return valueAuthor === '' || valueAuthor === item.release_date.toString().slice(0, 4)
   };
   const genreFilter = (item: TFilm): boolean => {
     const valueGenre = genre;
     return valueGenre === '' || item.title === valueGenre
   };
   const listSort = (a: TFilm, b: TFilm) => {
-    if (a[sort] > b[sort]) return 1;
-    if (a[sort] < b[sort]) return -1;
-    return 0
+    if (sort === 'vote_average') {
+      if (a[sort] > b[sort]) return -1;
+      if (a[sort] < b[sort]) return 1;
+      return 0
+    } else {
+      if (a[sort] > b[sort]) return 1;
+      if (a[sort] < b[sort]) return -1;
+      return 0
+    }
   };
   const filmsFilter = myFilms.filter(nameSearch).filter(releaseFilter).filter(genreFilter).sort(listSort)
   const elem = filmsFilter.map(film =>
     <li key={film.id} className="film">
-      <MyFilm film={film}/>
+      <Film film={film} stateLink='myFilms'/>
     </li>
   );
 
   function onlyUnique(value: string, index: number, self: string[]) {
     return self.indexOf(value) === index;
   }
-// 4 символа года
-  const releaseElem = myFilms.map(item => item.release_date.toString()).filter(onlyUnique).map(
-    (date) => <option key={date}>{date}</option>
-  );
 
-  const genreElem = [...new Set(myFilms.map(item => item.title))].map(
-    (genre) => <option key={genre}>{genre}</option>
+  const releaseElem = myFilms.map(
+    item => item.release_date.toString().slice(0, 4)).filter(onlyUnique).sort().map(
+    date => <option key={date}>{date}</option>
+  );
+  const genreElem = [...new Set(myFilms.map(item => item.title))].sort().map(
+    genre => <option key={genre}>{genre}</option>
   );
   const tableFilter = state &&
     <form className='filter'>

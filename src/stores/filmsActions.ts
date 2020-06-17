@@ -1,5 +1,14 @@
-import {filmsService, setLocal} from "./services";
-import {ADD_MYFILM, FETCH_FILM, LOAD_MYFILM, PAGE_FILM, REMOVE_MYFILM, TOTAL_PAGE, YEAR_FILM} from "./types";
+import {filmsService, genreService, setLocal} from "./services";
+import {
+  ADD_MYFILM,
+  FETCH_FILM,
+  FETCH_GENRE,
+  LOAD_MYFILM,
+  PAGE_FILM,
+  REMOVE_MYFILM,
+  TOTAL_PAGE,
+  YEAR_FILM
+} from "./types";
 import {hideLoader, showLoader} from "./appActions";
 import {Dispatch, TFilm, RootState} from "../types/common";
 
@@ -16,7 +25,15 @@ export function fetchFilms() {
     dispatch(totalPage());
   }
 }
-
+export function genreList() {
+  return async (dispatch: Dispatch) => {
+    const genres = await genreService();
+    dispatch({
+      type: FETCH_GENRE,
+      payload: genres.data.genres
+    })
+  }
+}
 export function totalPage() {
   return async (dispatch: Dispatch, getState: () => RootState) => {
     const {page, year} = getState().allFilms;

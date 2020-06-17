@@ -1,5 +1,14 @@
-import {ADD_MYFILM, FETCH_FILM, LOAD_MYFILM, PAGE_FILM, REMOVE_MYFILM, TOTAL_PAGE, YEAR_FILM} from "./types";
-import {TFilm} from "../types/common";
+import {
+  ADD_MYFILM,
+  FETCH_FILM,
+  FETCH_GENRE,
+  LOAD_MYFILM,
+  PAGE_FILM,
+  REMOVE_MYFILM,
+  TOTAL_PAGE,
+  YEAR_FILM
+} from "./types";
+import {TFilm, TGenre} from "../types/common";
 import {IAction} from "./reducers";
 
 interface IState {
@@ -8,6 +17,7 @@ interface IState {
   year: number,
   pastPage: number,
   myFilms: TFilm[],
+  genres: TGenre[]
 }
 const initialState = {
   fetchFilms: [],
@@ -15,6 +25,7 @@ const initialState = {
   year: 2020,
   pastPage: 1,
   myFilms: [],
+  genres: []
 }
 export const filmsReducer = (state: IState = initialState, action: IAction): IState => {
   switch (action.type) {
@@ -32,6 +43,8 @@ export const filmsReducer = (state: IState = initialState, action: IAction): ISt
       return {...state, myFilms: state.myFilms.filter(film => film.id !== action.payload)}
     case LOAD_MYFILM:
       return {...state, myFilms: action.payload}
+    case FETCH_GENRE:
+      return {...state, genres: action.payload}
     default:
       return state
   }

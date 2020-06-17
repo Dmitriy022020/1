@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilms, loadMyFilms} from "../../stores/filmsActions";
+import {fetchFilms, genreList, loadMyFilms} from "../../stores/filmsActions";
 import Loader from "../loader/Loader";
 import Film from "./Film";
 import './films.css'
@@ -8,12 +8,13 @@ import Pages from "./Pages";
 import {RootState} from "../../types/common";
 
 function FilmList() {
-  const dispatch = useDispatch()
-  const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
-  const loading = useSelector((state: RootState) => state.app.loading)
+  const dispatch = useDispatch();
+  const films = useSelector((state: RootState) => state.allFilms.fetchFilms);
+  const loading = useSelector((state: RootState) => state.app.loading);
 
   useEffect(() => {
     dispatch(loadMyFilms())
+    dispatch(genreList())
   }, [dispatch])
 
   if (loading)
@@ -21,7 +22,7 @@ function FilmList() {
 
   const elem = films.map(film =>
     <li key={film.id} className="film">
-      <Film film={film}/>
+      <Film film={film} stateLink='films'/>
     </li>
   )
   const button = (

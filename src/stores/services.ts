@@ -9,8 +9,14 @@ export async function filmsService(page: number, year: number) {
     '&primary_release_year=' + year +
     api_key
   )
-
 }
+
+export async function genreService() {
+  return await axios.get(
+    'https://api.themoviedb.org/3/genre/movie/list?&language=ru&api_key=19e4bdec1949a727168540afcf0d6538'
+  )
+}
+
 
 //'&sort_by=primary_release_date.asc' +
 

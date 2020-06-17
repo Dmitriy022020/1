@@ -6,11 +6,22 @@ import {TFilm, RootState} from "../../types/common";
 
 interface IProps {
   film: TFilm
+  stateLink: string
 }
+
 function Film(props: IProps) {
   const {film} = props;
-  const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
+  const {stateLink} = props;
+  const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
+  const genres = useSelector((state: RootState) => state.allFilms.genres);
   const dispatch = useDispatch();
+
+  const genr = film.genre_ids.map(
+    genreIds => genres.filter(
+      genre => genreIds === genre.id).map(
+      genre => genre.name
+    )
+  ).slice(0,2).join(', ')
 
   const set = myFilms.find(myFilm => myFilm.id === film.id)
   const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,18 +46,23 @@ function Film(props: IProps) {
       Добавить в My films
     </button>
   return (
-    <div>
-      <h3>{film.title}</h3>
-      <h5>{film.release_date}</h5>
-      <span>
+    <div className='card-film'>
+      <div>
+        <h3>{film.title}</h3>
+        <p>{genr}</p>
+        <p>{film.release_date}</p>
+        <span>
         рейтинг <strong>{film.vote_average}</strong>
       </span>
-      <button className="button">
-        <Link to={{pathname:`/films/${film.id}`, state: 'films'}}>
-          подробнее
-        </Link>
-      </button>
-      {set ? del : add}
+      </div>
+      <div className='btn'>
+        <button className="button">
+          <Link to={{pathname: `/films/${film.id}`, state: `${stateLink}`}}>
+            подробнее
+          </Link>
+        </button>
+        {set ? del : add}
+      </div>
     </div>
   )
 }

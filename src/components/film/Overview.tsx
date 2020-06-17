@@ -16,23 +16,39 @@ const Overview = (props: IProps) => {
   const backLink = props.location.state
   const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
+  const genres = useSelector((state: RootState) => state.allFilms.genres);
 
-  const view = myFilms || films
-  console.log(films)
-  console.log(myFilms)
+  const view = (films.length === 0) ? myFilms : films
+
+  console.log(films, 'films')
+  console.log(myFilms, 'myFilms')
+  console.log(view, 'view')
 
   const film = view.find(film => film.id === Number(props.match.params.id))
   if (!film) {
     return (
       <div className="over container">
         <p>Фильм не найден</p>
+        <strong>
+          <Link to={`/${backLink}`}>
+            вернуться к списку
+          </Link>
+        </strong>
       </div>
     )
   }
+  const genr = film.genre_ids.map(
+    genreIds => genres.filter(
+      genre => genreIds === genre.id).map(
+      genre => genre.name
+    )
+  ).join(', ')
+
   return (
     <div className="over container">
       <h3>{film.title}</h3>
-      <h5>{film.release_date}</h5>
+      <p>{genr}</p>
+      <p>{film.release_date}</p>
       <p>{film.overview}</p>
       <strong>
         <Link to={`/${backLink}`}>

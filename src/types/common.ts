@@ -12,7 +12,12 @@ export type TFilm = {
   id: number,
   release_date: Date,
   overview: string,
-  vote_average: number
+  vote_average: number,
+  genre_ids: number[]
+}
+export type TGenre = {
+  id: number,
+  name: string
 }
 export type RootState = ReturnType<typeof reducers>
 

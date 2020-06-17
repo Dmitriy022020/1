@@ -1,55 +1,80 @@
 .ul_f {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  list-style: none;
 }
+
 .film {
-    flex: 0 0 200px;
-    height: 250px;
-    box-shadow: 0 0 3px 3px rgb(151, 151, 151);
-    padding: 10px;
-    margin: 10px;
-    background-color: rgba(200, 200, 200, 0.5);
+  flex: 0 0 200px;
+  height: 300px;
+  box-shadow: 0 0 3px 3px rgb(151, 151, 151);
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(200, 200, 200, 0.5);
 }
+
+.card-film {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-film .btn {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
 .green {
-    background: #33b462;
+  background: #33b462;
 }
+
 .green:hover {
-    background: rgba(51, 180, 98, 0.5);
+  background: rgba(51, 180, 98, 0.5);
 }
+
 .red {
-    background: #e34646;
+  background: #e34646;
 }
+
 .red:hover {
-    background: rgba(227, 70, 70, 0.5);
+  background: rgba(227, 70, 70, 0.5);
 }
+
 .pages {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
+
 .page_number {
-    margin: 5px;
+  margin: 5px;
 }
+
 .page_number:hover {
-    cursor: pointer;
-    font-weight: bold;
-    color: darkorchid;
+  cursor: pointer;
+  font-weight: bold;
+  color: darkorchid;
 }
+
 .page_active {
-    margin: 5px;
-    color: green;
-    font-weight: bold;
+  margin: 5px;
+  color: green;
+  font-weight: bold;
 }
+
 .back_number {
-    display: none;
+  display: none;
 }
+
 .over {
-    flex: 1 1 500px;
-    justify-content: center;
-    min-height: 300px;
-    box-shadow: 0 0 3px 3px rgb(99, 99, 99);
-    padding: 20px;
-    background-color: rgba(200, 200, 200, 0.5);
+  flex: 1 1 500px;
+  justify-content: center;
+  min-height: 300px;
+  box-shadow: 0 0 3px 3px rgb(99, 99, 99);
+  padding: 20px;
+  background-color: rgba(200, 200, 200, 0.5);
 }
