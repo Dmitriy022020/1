@@ -21,14 +21,14 @@ function Film(props: IProps) {
       genre => genreIds === genre.id).map(
       genre => genre.name
     )
-  ).slice(0,2).join(', ')
+  )
+  const genr2 = genr.slice(0, 2).join(', ')
 
   const set = myFilms.find(myFilm => myFilm.id === film.id)
   const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!set) {
       dispatch(addMyFilm(film));
-      console.log(film)
     }
   }
   const del =
@@ -49,7 +49,7 @@ function Film(props: IProps) {
     <div className='card-film'>
       <div>
         <h3>{film.title}</h3>
-        <p>{genr}</p>
+        <p>{(genr.length > 2) ? genr2 + ' ...' : genr2}</p>
         <p>{film.release_date}</p>
         <span>
         рейтинг <strong>{film.vote_average}</strong>

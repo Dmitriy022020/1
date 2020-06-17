@@ -3,14 +3,15 @@ import './myFilms.css';
 import '../film/films.css';
 import {useDispatch, useSelector} from "react-redux";
 import {genreList, loadMyFilms} from "../../stores/filmsActions";
-import {TFilm, RootState} from "../../types/common";
+import {TFilm, RootState, TGenre} from "../../types/common";
 import Film from "../film/Film";
 
 type Sort = 'title' | 'release_date' | 'vote_average';
 
 function MyFilmList() {
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
-  //const genres = useSelector((state: RootState) => state.allFilms.genres);
+  const genres = useSelector((state: RootState) => state.allFilms.genres);
+  const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch()
   const [title, setTitle] = useState('');
   const [release, setRelease] = useState('');
@@ -45,12 +46,20 @@ function MyFilmList() {
     return false
   };
   const releaseFilter = (item: TFilm): boolean => {
-    const valueAuthor = release;
-    return valueAuthor === '' || valueAuthor === item.release_date.toString().slice(0, 4)
+    return release === '' || release === item.release_date.toString().slice(0, 4)
   };
   const genreFilter = (item: TFilm): boolean => {
-    const valueGenre = genre;
-    return valueGenre === '' || item.title === valueGenre
+    const g = item.genre_ids.map(
+      genreIds => genres.filter(
+        genre => genreIds === genre.id).map(
+        genre => genre.name
+      )
+    ).join(', ')
+    if (genre === '') return true;
+    else {
+      if (g.includes(genre)) return true;
+    }
+    return false
   };
   const listSort = (a: TFilm, b: TFilm) => {
     if (sort === 'vote_average') {
@@ -78,9 +87,19 @@ function MyFilmList() {
     item => item.release_date.toString().slice(0, 4)).filter(onlyUnique).sort().map(
     date => <option key={date}>{date}</option>
   );
-  const genreElem = [...new Set(myFilms.map(item => item.title))].sort().map(
-    genre => <option key={genre}>{genre}</option>
+  const genreSort = (a: TGenre, b: TGenre) => {
+    if (a["name"] > b["name"]) return 1;
+    if (a["name"] < b["name"]) return -1;
+    return 0
+  }
+  const genreElem = genres.sort(genreSort).map(
+    genre => <option key={genre.id}>{genre.name}</option>
   );
+  /*
+    const genreElem = [...new Set(myFilms.map(item => item.title))].sort().map(
+      genre => <option key={genre}>{genre}</option>
+    );
+  */
   const tableFilter = state &&
     <form className='filter'>
       <div>
@@ -124,7 +143,7 @@ function MyFilmList() {
       </legend>
       {tableFilter}
       <ul className="ul_f">
-        {elem}
+        {user ? elem : 'НЕОБХОДИМО АВТОРИЗОВАТЬСЯ'}
       </ul>
     </div>
   );
