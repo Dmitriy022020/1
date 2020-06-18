@@ -13,7 +13,9 @@ export type TFilm = {
   release_date: Date,
   overview: string,
   vote_average: number,
-  genre_ids: number[]
+  genre_ids: number[],
+  popularity: number,
+  poster_path: string,
 }
 export type TGenre = {
   id: number,

@@ -8,7 +8,7 @@ import MyFilmList from "./myFilms/MyFilmList";
 
 const Main = () => (
   <Switch>
-    <Route exact path='/' component={Home}/>
+    <Route exact path='/home' component={Home}/>
     <Route path='/films' component={Films}/>
     <Route path='/myFilms' component={MyFilms}/>
     <Route path='/about' component={CommentsList}/>

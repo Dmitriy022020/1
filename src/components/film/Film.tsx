@@ -50,14 +50,14 @@ function Film(props: IProps) {
       <div>
         <h3>{film.title}</h3>
         <p>{(genr.length > 2) ? genr2 + ' ...' : genr2}</p>
-        <p>{film.release_date}</p>
+        <p>Дата выхода: {film.release_date}</p>
         <span>
-        рейтинг <strong>{film.vote_average}</strong>
+        Рейтинг <strong>{film.vote_average}</strong>
       </span>
       </div>
       <div className='btn'>
         <button className="button">
-          <Link to={{pathname: `/films/${film.id}`, state: `${stateLink}`}}>
+          <Link to={{pathname: `/${stateLink}/${film.id}`, state: `${stateLink}`}}>
             подробнее
           </Link>
         </button>

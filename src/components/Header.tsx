@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {Profil} from "./Profil";
 import {useSelector} from "react-redux";
 import {RootState} from "../types/common";
@@ -10,16 +10,16 @@ const Header = () => {
     <div className="header">
       <ul className="nav">
         <li>
-          <Link className='li' to='/'>Home</Link>
+          <NavLink className='li' activeClassName='li-active' to='/home'>Home</NavLink>
         </li>
         <li>
-          <Link className='li' to='/films'>Films</Link>
+          <NavLink className='li' activeClassName='li-active' to='/films'>Films</NavLink>
         </li>
         <li>
-          <Link className='li' to='/myFilms'>My films</Link>
+          <NavLink className='li' activeClassName='li-active' to='/myFilms'>My films</NavLink>
         </li>
         <li>
-          <Link className='li' to='/about'>About</Link>
+          <NavLink className='li' activeClassName='li-active' to='/about'>About</NavLink>
         </li>
       </ul>
       {user ? <Profil/> : null}

@@ -1,17 +1,25 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {RootState} from "../types/common";
+import {exitProfil} from "../stores/appActions";
 
 export const Profil = () => {
   const user = useSelector((state: RootState) => state.users.user)
+  const dispatch = useDispatch()
+  const elem =
+    <div className='exitProfil'>
+      <h5 onClick={() => dispatch(exitProfil())}>Выйти</h5>
+    </div>
+
   return (
-    <Link to='/'>
-      <div className="profil">
-        <h4>
+    <div className="profil profil-drop">
+      <Link to='/home'>
+        <h5>
           {user}
-        </h4>
-      </div>
-    </Link>
+        </h5>
+      </Link>
+      {elem}
+    </div>
   )
 }

@@ -17,7 +17,6 @@ export async function genreService() {
   )
 }
 
-
 //'&sort_by=primary_release_date.asc' +
 
 export function setLocal() {

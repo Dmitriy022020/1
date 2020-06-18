@@ -1,6 +1,6 @@
 .ul_f {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-flow: row wrap;
   list-style: none;
 }
@@ -71,10 +71,16 @@
 }
 
 .over {
+  display: flex;
   flex: 1 1 500px;
-  justify-content: center;
-  min-height: 300px;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  min-height: 500px;
   box-shadow: 0 0 3px 3px rgb(99, 99, 99);
   padding: 20px;
   background-color: rgba(200, 200, 200, 0.5);
+}
+.text {
+  margin-left: 20px;
+  flex: 1 1 300px;
 }

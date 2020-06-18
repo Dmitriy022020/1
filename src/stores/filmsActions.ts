@@ -63,7 +63,6 @@ export function yearFilm(year: string) {
     })
     dispatch(pageFilm(1))
     dispatch(fetchFilms())
-    console.log(year)
   }
 }
 

@@ -17,18 +17,12 @@ const Overview = (props: IProps) => {
   const films = useSelector((state: RootState) => state.allFilms.fetchFilms)
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms)
   const genres = useSelector((state: RootState) => state.allFilms.genres);
-
-  const view = (films.length === 0) ? myFilms : films
-
-  console.log(films, 'films')
-  console.log(myFilms, 'myFilms')
-  console.log(view, 'view')
+  const view = (backLink === 'films') ? films : myFilms
 
   const film = view.find(film => film.id === Number(props.match.params.id))
   if (!film) {
     return (
       <div className="over container">
-        <p>Фильм не найден</p>
         <strong>
           <Link to={`/${backLink}`}>
             вернуться к списку
@@ -37,6 +31,7 @@ const Overview = (props: IProps) => {
       </div>
     )
   }
+
   const genr = film.genre_ids.map(
     genreIds => genres.filter(
       genre => genreIds === genre.id).map(
@@ -46,15 +41,25 @@ const Overview = (props: IProps) => {
 
   return (
     <div className="over container">
-      <h3>{film.title}</h3>
-      <p>{genr}</p>
-      <p>{film.release_date}</p>
-      <p>{film.overview}</p>
-      <strong>
-        <Link to={`/${backLink}`}>
-          вернуться к списку
-        </Link>
-      </strong>
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
+          width='300px'
+          height='450px'
+          alt={film.title}/>
+      </div>
+      <div className='text'>
+        <h3>{film.title}</h3>
+        <p>{genr}</p>
+        <p>Дата выхода: {film.release_date}</p>
+        <p>Рейтинг: {film.vote_average}</p>
+        <p>{film.overview}</p>
+        <strong>
+          <Link to={`/${backLink}`}>
+            вернуться к списку
+          </Link>
+        </strong>
+      </div>
     </div>
   )
 }
