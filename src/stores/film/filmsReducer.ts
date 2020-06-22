@@ -7,9 +7,9 @@ import {
   REMOVE_MYFILM,
   TOTAL_PAGE,
   YEAR_FILM
-} from "./types";
-import {TFilm, TGenre} from "../types/common";
-import {IAction} from "./reducers";
+} from "../types";
+import {TFilm, TGenre} from "../../types/common";
+import {IAction} from "../reducers";
 
 interface IState {
   fetchFilms: TFilm[]

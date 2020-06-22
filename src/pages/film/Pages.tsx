@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {pageFilm, yearFilm} from "../../stores/filmsActions";
+import {pageFilm, yearFilm} from "../../stores/film/filmsActions";
 import {RootState} from "../../types/common";
 
 export default function Pages() {
@@ -26,12 +26,26 @@ export default function Pages() {
   const options = arrY.map(
     year => <option key={year}>{year}</option>
   );
+  //метод на тест
+/*
+  const arrPages = () => {
+    const arrP = [];
+    const start = (page >= 8) ? (page - 6) : 1;
+    const end = (page <= pastPage - 7) ? (page + 7) : pastPage;
+    for (let i = start; i <= end; i++) {
+      arrP.push(i)
+    }
+    return arrP
+  }
+  console.log(arrPages())
+*/
   const arrP = [];
   const start = (page >= 8) ? (page - 6) : 1;
   const end = (page <= pastPage - 7) ? (page + 7) : pastPage;
   for (let i = start; i <= end; i++) {
     arrP.push(i)
   }
+
   const pageList = arrP.map(p =>
     <p onClick={() => dispatch(pageFilm(p))}
        className={(page === p) ? "page_active" : "page_number"}

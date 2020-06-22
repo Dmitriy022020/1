@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {addMyFilm, removeMyFilm} from "../../stores/filmsActions";
+import {addMyFilm, removeMyFilm} from "../stores/film/filmsActions";
 import {useDispatch, useSelector} from "react-redux";
-import {TFilm, RootState} from "../../types/common";
+import {TFilm, RootState} from "../types/common";
 
 interface IProps {
   film: TFilm

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {postsReducer} from './postsReducer'
-import {appReducer} from "./appReducer";
-import {filmsReducer} from "./filmsReducer";
-import {userReducer} from "./userReducer";
+import {postsReducer} from './post/postsReducer'
+import {appReducer} from "./app/appReducer";
+import {filmsReducer} from "./film/filmsReducer";
+import {userReducer} from "./app/userReducer";
 
 export interface IAction<T = string, R = any> {
   type: T;

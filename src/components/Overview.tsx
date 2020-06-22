@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {useSelector} from "react-redux";
-import {RootState} from "../../types/common";
+import {RootState} from "../types/common";
 import {RouteComponentProps} from "react-router";
 
 interface MatchParams {

@@ -1,5 +1,5 @@
-import {EXIT_PROFIL, SIGNIN_PROFIL} from "./types";
-import {IAction} from "./reducers";
+import {EXIT_PROFIL, SIGNIN_PROFIL} from "../types";
+import {IAction} from "../reducers";
 
 interface IState {
   user: string | null

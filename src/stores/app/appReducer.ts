@@ -1,5 +1,5 @@
-import {SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT} from "./types";
-import {IAction} from "./reducers";
+import {SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT} from "../types";
+import {IAction} from "../reducers";
 
 interface IState {
   loading: boolean

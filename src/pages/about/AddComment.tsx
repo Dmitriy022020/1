@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPost, showAlert} from "../../stores/appActions";
-import {Alert} from "./Alert";
+import {createPost, showAlert} from "../../stores/app/appActions";
+import {Alert} from "../../components/Alert";
 import {Post, RootState} from "../../types/common";
 
 interface IProps {

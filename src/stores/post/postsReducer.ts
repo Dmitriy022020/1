@@ -1,6 +1,6 @@
-import {CHANGE_POST, CREATE_POST, REMOVE_POST} from "./types";
-import {Post} from "../types/common";
-import {IAction} from "./reducers";
+import {CHANGE_POST, CREATE_POST, REMOVE_POST} from "../types";
+import {Post} from "../../types/common";
+import {IAction} from "../reducers";
 interface IState {
   posts: Post[]
 }

@@ -8,8 +8,8 @@ import {
   SHOW_ALERT,
   SHOW_LOADER,
   SIGNIN_PROFIL
-} from "./types";
-import {Dispatch, Post} from "../types/common";
+} from "../types";
+import {Dispatch, Post} from "../../types/common";
 
 export function createPost(post: Post) {
   return {

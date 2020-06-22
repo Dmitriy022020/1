@@ -1,10 +1,10 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import Home from './home/Home';
-import FilmList from './film/FilmList';
-import Overview from "./film/Overview";
-import CommentsList from "./about/CommentsList";
-import MyFilmList from "./myFilms/MyFilmList";
+import {Switch, Route, Redirect} from 'react-router-dom';
+import Home from '../pages/home/Home';
+import FilmList from '../pages/film/FilmList';
+import Overview from "./Overview";
+import CommentsList from "../pages/about/CommentsList";
+import MyFilmList from "../pages/myFilms/MyFilmList";
 
 const Main = () => (
   <Switch>
@@ -12,6 +12,7 @@ const Main = () => (
     <Route path='/films' component={Films}/>
     <Route path='/myFilms' component={MyFilms}/>
     <Route path='/about' component={CommentsList}/>
+    <Redirect to='/home'/>
   </Switch>
 );
 

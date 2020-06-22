@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {RootState} from "../types/common";
-import {exitProfil} from "../stores/appActions";
+import {exitProfil} from "../stores/app/appActions";
 
 export const Profil = () => {
   const user = useSelector((state: RootState) => state.users.user)

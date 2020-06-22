@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './myFilms.css';
-import '../film/films.css';
+import '../../pages/film/films.css';
 import {useDispatch, useSelector} from "react-redux";
-import {genreList, loadMyFilms} from "../../stores/filmsActions";
+import {genreList, loadMyFilms} from "../../stores/film/filmsActions";
 import {TFilm, RootState} from "../../types/common";
-import Film from "../film/Film";
-import {selectGenres, selectRelease} from "../../stores/selectors";
+import Film from "../../components/Film";
+import {selectGenres, selectRelease} from "../../stores/film/selectors";
 
 type Sort = 'title' | 'release_date' | 'vote_average';
 
@@ -14,8 +14,6 @@ function MyFilmList() {
   const genres = useSelector((state: RootState) => state.allFilms.genres);
   const releaseElem = useSelector(selectRelease)
   const genreElem = useSelector(selectGenres)
-
-  //const user = useSelector((state: RootState) => state.users.user);
   const dispatch = useDispatch()
   const [title, setTitle] = useState('');
   const [release, setRelease] = useState('');
@@ -52,18 +50,12 @@ function MyFilmList() {
   const releaseFilter = (item: TFilm): boolean => {
     return release === '' || release === item.release_date.toString().slice(0, 4)
   };
+
   const genreFilter = (item: TFilm): boolean => {
-    const g = item.genre_ids.map(
-      genreIds => genres.filter(
-        genre => genreIds === genre.id).map(
-        genre => genre.name
-      )
-    ).join(', ')
     if (genre === '') return true;
-    else {
-      if (g.includes(genre)) return true;
-    }
-    return false
+    return item.genre_ids
+      .some(genreId => genres
+        .find(genre => genre.id === genreId)?.name === genre)
   };
   const listSort = (a: TFilm, b: TFilm) => {
     if (sort === 'vote_average') {
@@ -82,11 +74,7 @@ function MyFilmList() {
       <Film film={film} stateLink='myFilms'/>
     </li>
   );
-  /*
-    const genreElem = [...new Set(myFilms.map(item => item.title))].sort().map(
-      genre => <option key={genre}>{genre}</option>
-    );
-  */
+
   const tableFilter = state &&
     <form className='filter'>
       <div>

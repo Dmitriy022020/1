@@ -1,4 +1,4 @@
-import {filmsService, genreService, setLocal} from "./services";
+import {filmsService, genreService, setLocal} from "../../services/services";
 import {
   ADD_MYFILM,
   FETCH_FILM,
@@ -8,9 +8,9 @@ import {
   REMOVE_MYFILM,
   TOTAL_PAGE,
   YEAR_FILM
-} from "./types";
-import {hideLoader, showLoader} from "./appActions";
-import {Dispatch, TFilm, RootState} from "../types/common";
+} from "../types";
+import {hideLoader, showLoader} from "../app/appActions";
+import {Dispatch, TFilm, RootState} from "../../types/common";
 
 export function fetchFilms() {
   return async (dispatch: Dispatch, getState: () => RootState) => {

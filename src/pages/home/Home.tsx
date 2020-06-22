@@ -2,8 +2,14 @@ import React, {useEffect} from 'react';
 import Modal from './Modal';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../types/common";
-import {selectFirstFilm, selectOldFilm, selectPopularity, selectRatingFilm} from "../../stores/selectors";
-import {loadMyFilms} from "../../stores/filmsActions";
+import {
+  oldPopularitySelector,
+  selectFirstFilm,
+  selectOldFilm,
+  selectPopularity,
+  selectRatingFilm
+} from "../../stores/film/selectors";
+import {loadMyFilms} from "../../stores/film/filmsActions";
 
 function Home() {
   const user = useSelector((state: RootState) => state.users.user)
@@ -11,6 +17,7 @@ function Home() {
   const ratingFilm = useSelector(selectRatingFilm)
   const oldFilm = useSelector(selectOldFilm)
   const popularityFilm = useSelector(selectPopularity)
+  const oldPopularity = useSelector(oldPopularitySelector)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -46,6 +53,10 @@ function Home() {
       <h4>
         <i>Cамый популярный фильм: </i>
         {popularityFilm.title} ({popularityFilm.popularity})
+      </h4>
+      <h4>
+        <i>Cамый фильм: </i>
+        {oldPopularity}
       </h4>
     </div> : null
   return (

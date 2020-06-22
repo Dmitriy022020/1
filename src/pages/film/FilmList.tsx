@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFilms, genreList, loadMyFilms} from "../../stores/filmsActions";
-import Loader from "../loader/Loader";
-import Film from "./Film";
+import {fetchFilms, genreList, loadMyFilms} from "../../stores/film/filmsActions";
+import Loader from "../../components/loader/Loader";
+import Film from "../../components/Film";
 import './films.css'
 import Pages from "./Pages";
 import {RootState} from "../../types/common";

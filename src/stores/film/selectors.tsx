@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {RootState, TGenre} from "../types/common";
+import {RootState, TGenre} from "../../types/common";
 import React from "react";
 
 const selectAllFilm = (state: RootState) => state.allFilms.myFilms;
@@ -39,9 +39,14 @@ export const selectPopularity = createSelector(
       return 0
     }
   )[0]
-
 )
-function onlyUnique(value: string, index: number, self: string[]) {
+export const oldPopularitySelector = createSelector(
+  [selectPopularity, selectOldFilm],
+  (selectOldFilm, selectPopularity) => {
+    return (selectPopularity && selectPopularity.title) + ' и ' + (selectOldFilm && selectOldFilm.title)
+  }
+)
+  function onlyUnique(value: string, index: number, self: string[]) {
   return self.indexOf(value) === index;
 }
 
