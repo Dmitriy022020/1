@@ -1,7 +1,13 @@
+const {releaseFilter} = require('./pages/myFilms/MyFilmList')
 
-
-describe('Test', () => {
-  it('test1', () =>{
-    expect(true).toBe(true)
+describe('MyFilm', () => {
+  let item
+  beforeEach(() => {
+    item = {
+      release_date: '2020-06-20'
+    }
+  })
+  test('releaseFilter', () =>{
+    expect(releaseFilter(item)).toBe(true)
   })
 })

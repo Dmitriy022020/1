@@ -67,7 +67,9 @@ function MyFilmList() {
       if (a[sort] < b[sort]) return -1;
       return 0
     }
-  };
+  }
+  //module.exports = {releaseFilter}
+
   const filmsFilter = myFilms.filter(nameSearch).filter(releaseFilter).filter(genreFilter).sort(listSort)
   const elem = filmsFilter.map(film =>
     <li key={film.id} className="film">
