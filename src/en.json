@@ -1,0 +1,14 @@
+{
+  "en": {
+    "translation": {
+      "cancel": "Cancel",
+      "ok": "OK",
+      "home": "Home",
+      "films": "FIlms",
+      "myFilms": "My films",
+      "about": "About",
+      "exit": "Exit",
+      "signIn": "sign in"
+    }
+  }
+}

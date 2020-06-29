@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {Profil} from "./Profil";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../types/common";
+import {changeLanguage} from "../stores/app/appActions";
 
 const Header = () => {
-  const user = useSelector((state: RootState) => state.users.user)
+  const user = useSelector((state: RootState) => state.users.user);
+  const dispatch = useDispatch();
   return (
     <div className="header">
       <ul className="nav">
@@ -23,6 +25,8 @@ const Header = () => {
         </li>
       </ul>
       {user ? <Profil/> : null}
+      <button onClick={() => dispatch(changeLanguage('en'))}>English</button>
+      <button onClick={() => dispatch(changeLanguage('ru'))}>Русский</button>
     </div>
   );
 }

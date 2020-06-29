@@ -6,15 +6,16 @@ import {genreList, loadMyFilms} from "../../stores/film/filmsActions";
 import {TFilm, RootState} from "../../types/common";
 import Film from "../../components/Film";
 import {selectGenres, selectRelease} from "../../stores/film/selectors";
+import {releaseFilter} from "./myFilmUtilite";
 
 type Sort = 'title' | 'release_date' | 'vote_average';
 
 function MyFilmList() {
   const myFilms = useSelector((state: RootState) => state.allFilms.myFilms);
   const genres = useSelector((state: RootState) => state.allFilms.genres);
-  const releaseElem = useSelector(selectRelease)
-  const genreElem = useSelector(selectGenres)
-  const dispatch = useDispatch()
+  const releaseElem = useSelector(selectRelease);
+  const genreElem = useSelector(selectGenres);
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [release, setRelease] = useState('');
   const [genre, setGenre] = useState('');
@@ -47,9 +48,6 @@ function MyFilmList() {
     else if (item.title.toLowerCase().includes(valueName)) return true;
     return false
   };
-  const releaseFilter = (item: TFilm): boolean => {
-    return release === '' || release === item.release_date.toString().slice(0, 4)
-  };
 
   const genreFilter = (item: TFilm): boolean => {
     if (genre === '') return true;
@@ -68,9 +66,8 @@ function MyFilmList() {
       return 0
     }
   }
-  //module.exports = {releaseFilter}
 
-  const filmsFilter = myFilms.filter(nameSearch).filter(releaseFilter).filter(genreFilter).sort(listSort)
+  const filmsFilter = myFilms.filter(nameSearch).filter(item => releaseFilter(item, release)).filter(genreFilter).sort(listSort)
   const elem = filmsFilter.map(film =>
     <li key={film.id} className="film">
       <Film film={film} stateLink='myFilms'/>

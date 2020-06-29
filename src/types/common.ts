@@ -10,7 +10,7 @@ export type Post = {
 export type TFilm = {
   title: string,
   id: number,
-  release_date: Date,
+  release_date: string,
   overview: string,
   vote_average: number,
   genre_ids: number[],

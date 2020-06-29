@@ -7,7 +7,7 @@ interface IProps {
 export const Alert: React.FC<IProps> = ({text}) => {
   return (
     <div className="alert">
-      {text}
+      <p>{text}</p>
     </div>
   )
 }

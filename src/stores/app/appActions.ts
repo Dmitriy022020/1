@@ -1,4 +1,5 @@
 import {
+  CHANGE_LANGUAGE,
   CHANGE_POST,
   CREATE_POST,
   EXIT_PROFIL,
@@ -75,3 +76,10 @@ export function hideAlert() {
   }
 }
 
+export function changeLanguage(language: string) {
+  return {
+    type: CHANGE_LANGUAGE,
+    payload: language
+  }
+
+}
